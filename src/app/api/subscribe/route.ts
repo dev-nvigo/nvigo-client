@@ -77,14 +77,13 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: error.message }, { status: 500 });
         }
 
-        // ✅ Send Welcome Email
         await sendEmail(
             email,
             '🌍 Exciting News! NVIGO is Launching Soon! 🎉',
             `
             <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto;">
                 <h1 style="color: #0A8ED9;">Dear ${first_name || 'there'},</h1>
-                <p>Thank you for subscribing! We’re thrilled to have you on board as we gear up to launch <strong>NVIGO</strong> – your go-to platform for trusted resources, vendor connections, and a supportive global community designed just for international students like you.</p>
+                <p>Thank you for subscribing! We’re thrilled to have you on board as we gear up to launch <strong>NVIGO</strong> - your go-to platform for trusted resources, vendor connections, and a supportive global community designed just for international students like you.</p>
                 <p>Stay tuned for exclusive updates, early access, and special features to make your journey abroad smoother than ever!</p>
                 <p>Follow us for more updates & let’s navigate this journey together.</p>
                 <p>Best,</p>

@@ -1,4 +1,8 @@
+"use client";
+
 import { useState } from 'react';
+import { useRouter } from "next/navigation";
+import { HOME } from "@/components/ConstantLinks";
 
 const Subscribe = () => {
     const [email, setEmail] = useState('');
@@ -7,10 +11,13 @@ const Subscribe = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    
+    const router = useRouter();
 
     // Open the modal when Subscribe is clicked
     const handleSubscribeClick = () => {
         setShowPopup(true);
+        setMessage('');
     };
 
     // Handle final submission to API
@@ -29,10 +36,14 @@ const Subscribe = () => {
 
         if (response.ok) {
             setMessage('Successfully subscribed!');
-            setShowPopup(false);
-            setEmail('');
-            setFirstName('');
-            setLastName('');
+            
+            setTimeout(() => {
+                setShowPopup(false);
+                setEmail('');
+                setFirstName('');
+                setLastName('');
+                router.push(HOME);
+            }, 2000);
         } else {
             setMessage(data.error || 'Something went wrong');
         }
@@ -77,7 +88,7 @@ const Subscribe = () => {
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md transition-opacity animate-fadeIn">
                     <div className="bg-white/80 p-8 rounded-xl shadow-2xl text-center w-[90vw] max-w-md transform transition-all scale-95 hover:scale-100">
-                        <h2 className="text-[#232536] text-lg !font-circular font-bold">Subscribe to our Newsletter</h2>
+                        <h2 className="text-[#232536] text-lg !font-circular font-bold">Subscribe to receive Updates</h2>
 
                         <input
                             type="email"
@@ -116,7 +127,7 @@ const Subscribe = () => {
                             Cancel
                         </button>
 
-                        {message && <p className="mt-4 text-green-600 font-medium">{message}</p>}
+                        {message && <p className="mt-4 text-green-600 font-medium animate-pulse">{message}</p>}
                     </div>
                 </div>
             )}
