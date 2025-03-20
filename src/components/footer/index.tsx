@@ -3,7 +3,7 @@ import { Linkedin, Instagram } from "lucide-react";
 
 interface FooterProps { full?: boolean; };
 
-export default function Footer({ full = true }) {
+const Footer: React.FC<FooterProps> = ({ full = true }) => {
     return (
         <footer className="w-full bg-white pb-5">
             <div className="max-w-6xl mx-auto px-6">
@@ -83,3 +83,5 @@ export default function Footer({ full = true }) {
         </footer>
     );
 }
+
+export default Footer;

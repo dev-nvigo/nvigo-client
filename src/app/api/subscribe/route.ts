@@ -5,7 +5,7 @@ import { promisify } from 'util';
 import { sendEmail } from '@/lib/email';
 
 const resolveMx = promisify(dns.resolveMx);
-const ABSTRACT_API_KEY = process.env.ABSTRACT_API_KEY!;
+// const ABSTRACT_API_KEY = process.env.ABSTRACT_API_KEY!;
 
 export async function POST(req: Request) {
     try {
@@ -31,6 +31,8 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: 'Invalid email domain (No MX records found)' }, { status: 400 });
             }
         } catch (error) {
+            console.log(error);
+            
             return NextResponse.json({ error: 'Invalid email domain (MX lookup failed)' }, { status: 400 });
         }
 
@@ -71,6 +73,7 @@ export async function POST(req: Request) {
             .insert([{ email, first_name, last_name }]);
 
         if (error) {
+            console.log(error);
             return NextResponse.json({ error: error.message }, { status: 500 });
         }
 
@@ -107,6 +110,8 @@ export async function POST(req: Request) {
         return NextResponse.json({ message: 'Successfully subscribed!' }, { status: 200 });
 
     } catch (error) {
+        console.log(error);
+        
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }

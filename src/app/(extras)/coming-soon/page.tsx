@@ -11,7 +11,7 @@ const ComingSoon = () => {
 
             {/* Header */}
             <h1 className="mt-4 text-xl sm:text-xl md:text-3xl !font-circular text-black">
-                We're Almost Ready to Launch! 🚀
+                We&apos;re Almost Ready to Launch! 🚀
             </h1>
 
             {/* Content */}
