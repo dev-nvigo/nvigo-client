@@ -34,17 +34,10 @@ const Navbar = () => {
                                 Blogs
                             </Button>
                         </div>
-                        <Button
-                            variant="default"
-                            onClick={() => router.push(COMINGSOON)}
-                            className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56] !font-circular font-bold"
-                        >
-                            Join NviGo
-                        </Button>
                     </div>
 
                     {/* Mobile Menu */}
-                    <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
+                    {/* <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
                         <SheetTrigger asChild className="lg:hidden">
                             <Button variant="ghost" size="icon">
                                 <Menu className="h-5 w-5" />
@@ -58,8 +51,16 @@ const Navbar = () => {
                                 <Button className="!font-circular-book" variant="ghost" onClick={() => router.push(COMINGSOON)}>Blogs</Button>
                             </div>
                         </SheetContent>
-                    </Sheet>
+                    </Sheet> */}
                 </div>
+
+                <Button
+                    variant="default"
+                    onClick={() => router.push(COMINGSOON)}
+                    className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56] !font-circular font-bold"
+                >
+                    Join NviGo
+                </Button>
             </div>
         </div>
     );
