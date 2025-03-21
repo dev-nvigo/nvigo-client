@@ -1,9 +1,15 @@
+"use client";
+
 import Logo from "@/components/Logo";
 import { Linkedin, Instagram } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { COMINGSOON } from "@/components/ConstantLinks";
 
 interface FooterProps { full?: boolean; };
 
 const Footer: React.FC<FooterProps> = ({ full = true }) => {
+    const router = useRouter();
+
     return (
         <footer className="w-full bg-white pb-5">
             <div className="max-w-6xl mx-auto px-6">
@@ -26,19 +32,19 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <div className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Quick Links</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><a href="/about" className="hover:text-gray-900 !font-circular-med">About</a></li>
-                                    <li><a href="/services" className="hover:text-gray-900 !font-circular-med">Services</a></li>
-                                    <li><a href="/faqs" className="hover:text-gray-900 !font-circular-med">FAQs</a></li>
-                                    <li><a href="/contact" className="hover:text-gray-900 !font-circular-med">Contact</a></li>
+                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">About</button></li>
+                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Services</button></li>
+                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">FAQs</button></li>
+                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Contact</button></li>
                                 </ul>
                             </div>
-
+                            
                             {/* Legal Links */}
                             <div className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Legal</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><a href="/privacy-policy" className="hover:text-gray-900 !font-circular-med">Privacy Policy</a></li>
-                                    <li><a href="/terms" className="hover:text-gray-900 !font-circular-med">Terms and Conditions</a></li>
+                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Privacy Policy</button></li>
+                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Terms and Conditions</button></li>
                                 </ul>
                             </div>
 
