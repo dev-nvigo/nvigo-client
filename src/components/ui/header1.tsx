@@ -9,9 +9,9 @@ interface HeaderOneProps {
 const HeaderOne: React.FC<HeaderOneProps> = ({ children, type, className = "" }) => {
     let fontSize;
     if (type === 1) {
-        fontSize = "text-4xl md:text-7xl";
+        fontSize = "text-[8vw] xs:text-[10vw] md:text-7xl";
     } else {
-        fontSize = "text-3xl md:text-6xl";
+        fontSize = "text-[7vw] xs:text-[8vw] md:text-6xl";
     }
     return (
         <span

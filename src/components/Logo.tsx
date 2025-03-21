@@ -5,7 +5,7 @@ import Link from "next/link";
 interface NavbarLogoProps { isFooter?: boolean };
 
 const NavbarLogo: React.FC<NavbarLogoProps> = ({ isFooter = false }) => {
-    const fontSize = isFooter ? "text-6xl md:text-5xl lg:text-7xl" : "text-4xl md:text-5xl lg:text-7xl";
+    const fontSize = isFooter ? "text-[10vh] xs:text-6xl md:text-5xl lg:text-7xl" : "text-4xl md:text-5xl lg:text-7xl";
     return (
         <Link href="/" className="flex items-center">
             <div className="relative w-[10vw] flex items-center">
@@ -21,7 +21,7 @@ const NavbarLogo: React.FC<NavbarLogoProps> = ({ isFooter = false }) => {
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                     }}
-                    className={`text-4xl md:text-5xl lg:text-7xl tracking-widest mt-2 !font-orange-juice ${fontSize}`}
+                    className={`tracking-widest mt-2 !font-orange-juice ${fontSize}`}
                 >
                     Go
                 </span>

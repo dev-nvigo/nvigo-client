@@ -1,137 +1,139 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 
 @variant dark (&:is(.dark *));
 
 @font-face {
-  font-family: 'Orange Juice';
-  src: url('/fonts/orange-juice.ttf') format('truetype');
+  font-family: "Orange Juice";
+  src: url("/fonts/orange-juice.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Circular Std';
-  src: url('/fonts/circular-std-bold.ttf') format('truetype');
+  font-family: "Circular Std";
+  src: url("/fonts/circular-std-bold.ttf") format("truetype");
   font-weight: normal;
   font-style: bold;
 }
 
 @font-face {
-  font-family: 'Circular Std Book';
-  src: url('/fonts/circular-std-book.ttf') format('truetype');
+  font-family: "Circular Std Book";
+  src: url("/fonts/circular-std-book.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Circular Std Medium';
-  src: url('/fonts/circular-std-med.ttf') format('truetype');
+  font-family: "Circular Std Medium";
+  src: url("/fonts/circular-std-med.ttf") format("truetype");
   font-weight: normal;
   font-style: medium;
 }
 
-
 /* Define theme variables */
 @theme {
-    /* Font Families */
-    --font-work: 'Work Sans', sans-serif;
-    --font-factum: 'Faktum Test', sans-serif;
-    --font-poppins: 'Poppins', sans-serif;
-    --font-roboto: 'Roboto', sans-serif;
-    --font-inter: 'Inter', sans-serif;
-    --font-orange-juice: 'Orange Juice', sans-serif;
-    --font-circular: 'Circular Std', sans-serif;
-    --font-circular-book: 'Circular Std Book', sans-serif;
-    --font-circular-med: 'Circular Std Medium', sans-serif;
-  
-    /* Colors */
-    --color-c-blue-200: #569DDF;
-    --color-c-blue-200-h: #297ACC;
-    --color-c-green-0: #16B57F;
-    --color-c-green-100: #61C986;
-    --color-c-red-0: #FE6B64;
-    --color-c-red-0-h: #E8554F;
-    --color-c-teal-0: #3A9DAA;
-    --color-c-teal-0-h: #25818F;
-    --color-c-white-150: #F1F5F9;
-    --color-c-white-400: #D7D7D7;
-    --color-c-white-600: #9E9FA7;
-    --color-c-white-700: #7D7D7D;
-    --color-c-white-800: #2F2D2D;
-    --color-c-white-900: #242424;
+  /* Font Families */
+  --font-work: "Work Sans", sans-serif;
+  --font-factum: "Faktum Test", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-orange-juice: "Orange Juice", sans-serif;
+  --font-circular: "Circular Std", sans-serif;
+  --font-circular-book: "Circular Std Book", sans-serif;
+  --font-circular-med: "Circular Std Medium", sans-serif;
 
-    --color-black-3: hsl(240, 5%, 9%);
-    --color-blue: hsl(220, 25%, 60%);
-    --color-out: hsl(220, 15%, 90%);
-    --color-sky: hsl(220, 50%, 35%);
-    --color-white: hsl(0, 0%, 100%);
-    --color-blue-2: hsl(220, 50%, 35%);
-    --color-salt: hsl(150, 25%, 96%);
-    --color-blue-3: hsl(220, 20%, 60%);
-    --color-black-2: hsl(240, 5%, 18%);
-    --color-brown: hsl(220, 20%, 80%);
-    --color-earth: hsl(220, 15%, 75%);
-    --color-orange: hsl(30, 90%, 65%);
-    --color-red: hsl(0, 75%, 70%);
-    --color-navcls: hsl(0, 0%, 96%);
-    --color-gray: hsl(220, 15%, 50%);
-    --color-neutral: hsl(220, 15%, 90%);
-    --color-background: hsl(var(--background));
-    --color-foreground: hsl(var(--foreground));
-    --color-card: hsl(var(--card));
-    --color-card-foreground: hsl(var(--card-foreground));
-    --color-popover: hsl(var(--popover));
-    --color-popover-foreground: hsl(var(--popover-foreground));
-    --color-primary: hsl(var(--primary));
-    --color-primary-foreground: hsl(var(--primary-foreground));
-    --color-secondary: hsl(var(--secondary));
-    --color-secondary-foreground: hsl(var(--secondary-foreground));
-    --color-muted: hsl(var(--muted));
-    --color-muted-foreground: hsl(var(--muted-foreground));
-    --color-accent: hsl(var(--accent));
-    --color-accent-foreground: hsl(var(--accent-foreground));
-    --color-destructive: hsl(var(--destructive));
-    --color-destructive-foreground: hsl(var(--destructive-foreground));
-    --color-border: hsl(var(--border));
-    --color-input: hsl(var(--input));
-    --color-ring: hsl(var(--ring));
-    --color-chart-1: hsl(var(--chart-1));
-    --color-chart-2: hsl(var(--chart-2));
-    --color-chart-3: hsl(var(--chart-3));
-    --color-chart-4: hsl(var(--chart-4));
-    --color-chart-5: hsl(var(--chart-5));
-  
-    /* Border Radius */
-    --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
-  }
-  
-  /* Apply global styles */
-  * {
-    font-family: var(--font-roboto);
-  }
+  /* Colors */
+  --color-c-blue-200: #569ddf;
+  --color-c-blue-200-h: #297acc;
+  --color-c-green-0: #16b57f;
+  --color-c-green-100: #61c986;
+  --color-c-red-0: #fe6b64;
+  --color-c-red-0-h: #e8554f;
+  --color-c-teal-0: #3a9daa;
+  --color-c-teal-0-h: #25818f;
+  --color-c-white-150: #f1f5f9;
+  --color-c-white-400: #d7d7d7;
+  --color-c-white-600: #9e9fa7;
+  --color-c-white-700: #7d7d7d;
+  --color-c-white-800: #2f2d2d;
+  --color-c-white-900: #242424;
+
+  --color-black-3: hsl(240, 5%, 9%);
+  --color-blue: hsl(220, 25%, 60%);
+  --color-out: hsl(220, 15%, 90%);
+  --color-sky: hsl(220, 50%, 35%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-blue-2: hsl(220, 50%, 35%);
+  --color-salt: hsl(150, 25%, 96%);
+  --color-blue-3: hsl(220, 20%, 60%);
+  --color-black-2: hsl(240, 5%, 18%);
+  --color-brown: hsl(220, 20%, 80%);
+  --color-earth: hsl(220, 15%, 75%);
+  --color-orange: hsl(30, 90%, 65%);
+  --color-red: hsl(0, 75%, 70%);
+  --color-navcls: hsl(0, 0%, 96%);
+  --color-gray: hsl(220, 15%, 50%);
+  --color-neutral: hsl(220, 15%, 90%);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  /* Border Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --breakpoint-xs: 22.5rem;
+}
+
+/* Apply global styles */
+* {
+  font-family: var(--font-roboto);
+}
 
 * {
-  font-family: "Roboto"
+  font-family: "Roboto";
 }
 
 .herogreen {
-  background: radial-gradient(#73E0A9, #000000);
+  background: radial-gradient(#73e0a9, #000000);
 }
 
 .heroviolet {
-  background: radial-gradient(#5B68DF, #000000);
+  background: radial-gradient(#5b68df, #000000);
 }
 
 .hero {
-  background-image: radial-gradient(farthest-corner at 40px 40px,
-      #000000 0%,
-      #097756 100%);
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #000000 0%,
+    #097756 100%
+  );
 }
-
 
 @layer base {
   :root {

@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+// import React, { useState } from "react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+// import { Menu } from "lucide-react";
+// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
 import { COMINGSOON } from "@/components/ConstantLinks";
 
 const Navbar = () => {
-    const [openMobileMenu, setOpenMobileMenu] = useState(false);
+    // const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const router = useRouter();
 
     return (

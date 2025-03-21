@@ -2,16 +2,26 @@
 
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
+import Image from 'next/image';
 import { HOME } from "@/components/ConstantLinks";
 
-const Subscribe = () => {
+
+interface SubscribeProps {
+    isHero?: boolean;
+}
+
+const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
-    
+    const headerFont = isHero ? "text-center !font-circular-book text-c-white-700 mt-5 md:mt-10 text-xl sm:text-xl md:text-3xl" : "!font-circular text-black text-xl sm:text-xl md:text-3xl";
+    const inputFormat = isHero ? "hidden md:block" : "";
+    const divFormat = isHero ? "flex flex-col items-center md:block" : "";
+    const paraText = isHero ? "..." : "- with all the features and services you need!";
+
     const router = useRouter();
 
     // Open the modal when Subscribe is clicked
@@ -36,7 +46,7 @@ const Subscribe = () => {
 
         if (response.ok) {
             setMessage('Successfully subscribed!');
-            
+
             setTimeout(() => {
                 setShowPopup(false);
                 setEmail('');
@@ -50,9 +60,23 @@ const Subscribe = () => {
     };
 
     return (
-        <div>
-            {/* Initial UI - Only Email Input */}
-            <div className="p-2 bg-[#16B57F] rounded-full shadow-lg mt-3">
+        <div className={divFormat}>
+            <h1 className={`mt-4 ${headerFont}`}>
+                We&apos;re Almost Ready to Launch! 🚀
+            </h1>
+
+            {/* Content */}
+            {!isHero && <>
+                <p className="mt-3 text-xs sm:text-xs md:text-sm !font-circular-book text-c-white-800 max-w-2xl">
+                    Very soon, <span className="!font-circular font-bold">Nvigo</span> will be fully live {paraText}
+                </p>
+                <p className="text-xs sm:text-xs md:text-sm !font-circular-book text-c-white-800">
+                    In the meantime, stay tuned and get ready for something exciting. 🎉
+                </p>
+            </>}
+
+
+            <div className="p-2 bg-[#16B57F] rounded-full shadow-lg mt-4 w-fit md:w-auto">
                 <div className="flex flex-row gap-4 items-center justify-center text-center">
                     <div
                         className="flex items-center rounded-full p-2 w-full max-w-lg bg-white/40"
@@ -62,7 +86,7 @@ const Subscribe = () => {
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="flex-1 bg-transparent text-black placeholder-black px-4 py-2 outline-none !font-circular-med text-sm opacity-50 autofill:bg-transparent autofill:text-black"
+                            className={`flex-1 bg-transparent text-black placeholder-black px-4 py-2 outline-none !font-circular-med text-sm opacity-50 autofill:bg-transparent autofill:text-black ${inputFormat}`}
                             style={{
                                 opacity: 0.5,
                                 WebkitBoxShadow: "0 0 0px 1000px transparent inset",
@@ -70,15 +94,17 @@ const Subscribe = () => {
                             }}
                         />
 
-
                         <button
                             onClick={handleSubscribeClick}
                             className="flex items-center gap-2 bg-white !text-[#2F5B50] !font-circular-med px-4 py-2 rounded-full shadow-md transition-transform transform hover:scale-105 text-sm"
                         >
                             Subscribe
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" className="w-5 h-5">
-                                <path d="M15.854 0.146a.5.5 0 0 0-.527-.093l-15 6.5a.5.5 0 0 0 .08.94l5.4 1.543 1.543 5.4a.5.5 0 0 0 .94.08l6.5-15a.5.5 0 0 0-.093-.527zM6.21 8.79l3.48-3.48L4.219 6.5l1.991 2.29zm1.54 1.54l2.29 1.991-1.19-5.472-3.48 3.48 2.38 2.38z" />
-                            </svg>
+                            <Image
+                                src="/svgs/subscribe.svg"
+                                alt="Subscribe Icon"
+                                width={20}
+                                height={20}
+                            />
                         </button>
                     </div>
                 </div>

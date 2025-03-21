@@ -14,7 +14,7 @@ const gridItems = [
 
 const ImageGrid = () => {
     return (
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 w-[90vw] h-[90vw] md:w-[30vw] md:h-[30vw] mt-5 md:mt-0">
+        <div className="hidden md:grid grid-cols-3 grid-rows-3 gap-4 w-[90vw] h-[90vw] md:w-[30vw] md:h-[30vw] mt-5 md:mt-0">
             {gridItems.map((item, index) => (
                 <GridItem key={index} {...item} />
             ))}
