@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata = {
     title: "NviGo - Navigational Amigo",
-    description: "Helping international students from admission to graduation.",
+    description: "Helping international students simplify life abroad.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
