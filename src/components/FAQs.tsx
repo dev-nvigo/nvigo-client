@@ -7,10 +7,24 @@ import SubText from "@/components/ui/sub-text";
 import HeaderTwo from "@/components/ui/header2";
 import CTAButton from "@/components/ui/ctabutton";
 import { FAQS } from "@/components/ConstantLinks";
+import React from "react";
 
 
 interface FAQsProps {
     isFull?: boolean;
+}
+
+function boldNviGo(text: string) {
+    const regex = /NviGo/g; // This regex will match every instance of 'NviGo'
+    return text.split(regex).map((part, index, array) => {
+        if (index === array.length - 1) return part; // No need to wrap the last part
+        return (
+            <React.Fragment key={index}>
+                {part}
+                <span style={{ fontWeight: '500' }}>NviGo</span>
+            </React.Fragment>
+        );
+    });
 }
 
 const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
@@ -34,21 +48,20 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
                             className="w-full flex justify-between items-center py-4 text-left text-xs md:text-lg !font-circular-book focus:outline-none"
                             onClick={() => setOpenIndex(openIndex === index ? null : index)}
                         >
-                            {faq.question}
+                            <div>{boldNviGo(faq.question)}</div>
                             <ChevronDown
-                                className={`min-w-5 min-h-5 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""
-                                    }`}
+                                className={`min-w-5 min-h-5 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
                             />
                         </button>
-                        {openIndex === index && (
-                            <p className="text-gray-600 text-xs md:text-base !font-circular-book pb-4 px-4">{faq.answer}</p>
-                        )}
-                    </div>
-                ))}
+                        { openIndex === index && (
+                        <p className="text-gray-600 text-xs md:text-base !font-circular-book pb-4 px-4">{boldNviGo(faq.answer)}</p>
+                    )}
             </div>
+                ))}
+        </div>
 
             { !isFull && <CTAButton className="mt-7 bg-[#3e965d] hover:bg-[#357d4f] self-center" href={FAQS}>Know More</CTAButton> }
-        </section>
+        </section >
     );
 }
 
