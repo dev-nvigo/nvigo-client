@@ -4,81 +4,7 @@ import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { motion } from "framer-motion";
 import Image from "next/image";
-
-const gridData = [
-    {
-        src: "/svgs/image1.svg",
-        alt: "Travel & Flight Booking",
-        line_1: "✈️ Fly smarter, save more!",
-        line_2: "Compare affordable flight options and get student discounts for a budget-friendly journey.",
-        bgColor: "#569DDF",
-        scale: ""
-    },
-    {
-        src: "/svgs/image2.svg",
-        alt: "Airport Pickup",
-        line_1: "🚖 Stress-free airport rides!",
-        line_2: "Skip the confusion—book reliable airport pickups to your university or city hassle-free.",
-        bgColor: "#FF9A9E",
-        scale: "scale-125"
-    },
-    {
-        src: "/svgs/image3.svg",
-        alt: "Health Insurance",
-        line_1: "🩺 Get covered, stay safe!",
-        line_2: "Find affordable health insurance plans tailored for international students.",
-        bgColor: "#D7D3E4",
-        scale: ""
-    },
-    {
-        src: "/svgs/image4.svg",
-        alt: "Tax Filing Assistance",
-        line_1: "📑 File taxes without stress!",
-        line_2: "Get expert guidance to file your U.S. taxes correctly and maximize returns.",
-        bgColor: "#FE6B64",
-        scale: ""
-    },
-    {
-        src: "/svgs/image5.svg",
-        alt: "Food & Grocery Delivery",
-        line_1: "🥗 Eat well, live better!",
-        line_2: "Find student meal plans, grocery delivery services, and budget-friendly dining options.",
-        bgColor: "#C2785D",
-        scale: "scale-115"
-    },
-    {
-        src: "/svgs/image6.svg",
-        alt: "Banking & Finances",
-        line_1: "💳 Set up hassle-free banking!",
-        line_2: "Open a student-friendly account, get credit cards, and manage finances easily in the U.S.",
-        bgColor: "#61C986",
-        scale: ""
-    },
-    {
-        src: "/svgs/image7.svg",
-        alt: "Job Portals & Placement",
-        line_1: "💼 Kickstart your career!",
-        line_2: "Explore job portals, internships, and networking opportunities to land your dream role.",
-        bgColor: "#FFC107",
-        scale: "scale-120"
-    },
-    {
-        src: "/svgs/image8.svg",
-        alt: "Mobile SIM & Data Plans",
-        line_1: "📶 Stay connected anywhere!",
-        line_2: "Choose from the best SIM card and data plans designed for international students.",
-        bgColor: "#A7F2ED",
-        scale: ""
-    },
-    {
-        src: "/svgs/image9.svg",
-        alt: "Housing Assistance",
-        line_1: "🏠 Find a safe & affordable home!",
-        line_2: "Navigating housing in a new country is tough, but we’ve got you covered with trusted rental options.",
-        bgColor: "#FDB900",
-        scale: ""
-    },
-];
+import { gridData } from "@/data/heroItems";
 
 
 const GridCarousel = () => {
@@ -114,11 +40,11 @@ const GridCarousel = () => {
                                 height={500}
                                 className="w-[100%] h-auto max-h-[40vh] aspect-[4/3]"
                             />
-                            <h2 className="mt-4 text-lg font-bold text-c-white-900">{item.alt}</h2>
-                            <p className="text-sm mt-1 font-semibold text-c-white-800">
+                            <h2 className="mt-4 text-base font-bold text-c-white-900 !font-circular">{item.alt}</h2>
+                            <p className="text-sm mt-1 font-semibold text-c-white-800 !font-circular-book">
                                 {item.line_1}
                             </p>
-                            <p className="text-sm mt-1 text-white-800">
+                            <p className="text-xs mt-1 text-white-800 !font-circular-book">
                                 {item.line_2}
                             </p>
                             {/* <a href="#" className="mt-2 text-c-white-800 self-start text-left">
