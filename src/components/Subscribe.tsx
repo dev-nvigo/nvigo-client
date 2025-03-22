@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import { HOME } from "@/components/ConstantLinks";
@@ -59,6 +59,18 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
         }
     };
 
+    useEffect(() => {
+        if (showPopup) {
+            document.body.style.overflow = 'hidden'; // Disable scrolling
+        } else {
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        return () => {
+            document.body.style.overflow = ''; // Clean up on component unmount
+        };
+    }, [showPopup]);
+
     return (
         <div className={divFormat}>
             <h1 className={`mt-4 ${headerFont}`}>
@@ -68,7 +80,7 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
             {/* Content */}
             {!isHero && <>
                 <p className="mt-3 text-xs sm:text-xs md:text-sm !font-circular-book text-c-white-800 max-w-2xl">
-                    Very soon, <span className="!font-circular font-bold">Nvigo</span> will be fully live {paraText}
+                    Very soon, <span className="!font-circular font-bold">NviGo</span> will be fully live {paraText}
                 </p>
                 <p className="text-xs sm:text-xs md:text-sm !font-circular-book text-c-white-800">
                     In the meantime, stay tuned and get ready for something exciting. 🎉
@@ -112,7 +124,7 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
 
             {/* Popup Modal for Name Input */}
             {showPopup && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md transition-opacity animate-fadeIn">
+                <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md transition-opacity animate-fadeIn z-50">
                     <div className="bg-white/80 p-8 rounded-xl shadow-2xl text-center w-[90vw] max-w-md transform transition-all scale-95 hover:scale-100">
                         <h2 className="text-[#232536] text-lg !font-circular font-bold">Subscribe to receive Updates</h2>
 
