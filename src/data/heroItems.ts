@@ -12,7 +12,7 @@ export const gridData = [
         src: "/svgs/hero/Airport Pickup.svg",
         alt: "Airport Pickup",
         line_1: "🚖 Stress-free airport rides!",
-        line_2: "Skip the confusion—book reliable airport pickups to your university or city hassle-free.",
+        line_2: "Skip the confusion-book reliable airport pickups to your university or city hassle-free.",
         bgColor: "#FDB900",
         textColor: "text-black",
         scale: "scale-125"

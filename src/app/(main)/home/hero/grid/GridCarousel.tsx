@@ -50,7 +50,7 @@ const GridCarousel = () => {
                 <motion.div
                     className="flex w-full"
                     animate={{ x: `-${index * 100}%` }}
-                    transition={{ ease: "easeInOut", duration: 0.5 }} // ✅ Smooth transition
+                    transition={{ ease: "easeInOut", duration: 0.5 }}
                 >
                     {gridData.map((item, i) => (
                         <div
@@ -66,7 +66,7 @@ const GridCarousel = () => {
                                 height={500}
                                 className="w-[100%] h-auto max-h-[40vh] aspect-[4/3]"
                             />
-                            <h2 className={`mt-4 text-2xl font-bold ${item.textColor} !font-circular self-center`}>{item.alt}</h2>
+                            <h2 className={`mt-4 text-2xl font-bold ${item.textColor} !font-circular self-center text-center`}>{item.alt}</h2>
                             <p className={`text-base mt-1 font-semibold ${item.textColor} !font-circular-book`}>
                                 {item.line_1}
                             </p>

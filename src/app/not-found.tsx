@@ -25,7 +25,7 @@ const NotFound = () => {
 
                 {/* Content */}
                 <p className="mt-3 text-[0.6em] sm:text-[0.6em] md:text-sm !font-circular-book text-black max-w-2xl">
-                    This page seems lost in transit—just like your luggage at the airport! 🧳
+                    This page seems lost in transit-just like your luggage at the airport! 🧳
                 </p>
                 <p className="text-[0.6em] sm:text-[0.6em] md:text-sm !font-circular-book text-black">
                     Try heading back home or checking out our services.

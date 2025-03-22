@@ -16,8 +16,8 @@ const Hero = () => {
                     <GridCarousel />
                     <HeaderOne type={1}>Moving Abroad</HeaderOne>
                     <HeaderTwo className="mt-3 text-c-blue-200">Made Simple</HeaderTwo>
-                    <SubText>Manage everything—loans, housing, SIM cards,</SubText>
-                    <SubText>banking, jobs, and more—all in one place.</SubText>
+                    <SubText>Manage everything-loans, housing, SIM cards,</SubText>
+                    <SubText>banking, jobs, and more-all in one place.</SubText>
                     <SubText>NviGo makes your transition effortless.</SubText>
                     {/* <CTAButton className="mt-5 bg-c-blue-200 hover:bg-c-blue-200-h" href={COMINGSOON}>Explore Services</CTAButton> */}
 
