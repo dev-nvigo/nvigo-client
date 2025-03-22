@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata = {
-    title: "Nvigo - Navigational Amigo",
+    title: "NviGo - Navigational Amigo",
     description: "Helping international students from admission to graduation.",
 };
 

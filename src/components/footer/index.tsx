@@ -21,9 +21,14 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <div className="h-12">
                                 <Logo isFooter={true} />
                             </div>
-                            <p className="text-gray-500 text-xs md:text-lg !font-circular-book">
-                                Simplifying study abroad with essential services, all in one place.
-                            </p>
+                            <div>
+                                <p className="text-gray-500 text-xs md:text-lg !font-circular-book">
+                                    Simplifying study abroad with
+                                </p>
+                                <p className="text-gray-500 text-xs md:text-lg !font-circular-book">
+                                    essential services, all in one place.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Center Section: Quick Links & Legal */}
@@ -51,7 +56,7 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             {/* Right Section: Social Links */}
                             <div className="space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold md:text-lg">Reach us out</h3>
-                                <div className="flex justify-end md:justify-start space-x-4">
+                                <div className="flex justify-center md:justify-start space-x-4">
                                     <a
                                         href="https://www.linkedin.com/company/nvigoio/"
                                         target="_blank"
@@ -83,7 +88,7 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
 
                 {/* Copyright */}
                 <p className="text-center text-gray-700 text-xs md:text-lg !font-circular-book">
-                    Built with ❤️ by Nvigo Team | © 2025 Nvigo. All rights reserved.
+                    Built with ❤️ by NviGo Team | © 2025 NviGo. All rights reserved.
                 </p>
             </div>
         </footer>
