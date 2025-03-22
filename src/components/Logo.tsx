@@ -21,7 +21,7 @@ const NavbarLogo: React.FC<NavbarLogoProps> = ({ isFooter = false }) => {
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                     }}
-                    className={`tracking-widest mt-2 !font-orange-juice ${fontSize}`}
+                    className={`tracking-wide mt-2 !font-orange-juice ${fontSize}`}
                 >
                     Go
                 </span>

@@ -15,7 +15,7 @@ const HeaderOne: React.FC<HeaderOneProps> = ({ children, type, className = "" })
     }
     return (
         <span
-            className={`${fontSize} font-bold text-[#1C1C28]/80 leading-tight !font-circular ${className}`}
+            className={`${fontSize} font-bold text-[#1C1C28]/80 leading-tight !font-circular whitespace-nowrap md:whitespace-normal ${className}`}
         >
             {children}
         </span>
