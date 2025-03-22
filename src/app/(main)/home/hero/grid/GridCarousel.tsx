@@ -29,7 +29,7 @@ const GridCarousel = () => {
                     {gridData.map((item, i) => (
                         <div
                             key={i}
-                            className="w-full min-w-full flex flex-col items-center text-center p-6 rounded-xl justify-end"
+                            className="w-full min-w-full flex flex-col items-left text-left p-6 rounded-xl justify-end"
                             style={{ backgroundColor: item.bgColor }}
                         >
                             {/* Image: Auto scales but doesn't exceed 40vh */}
@@ -40,11 +40,11 @@ const GridCarousel = () => {
                                 height={500}
                                 className="w-[100%] h-auto max-h-[40vh] aspect-[4/3]"
                             />
-                            <h2 className="mt-4 text-base font-bold text-c-white-900 !font-circular">{item.alt}</h2>
-                            <p className="text-sm mt-1 font-semibold text-c-white-800 !font-circular-book">
+                            <h2 className={`mt-4 text-2xl font-bold ${item.textColor} !font-circular`}>{item.alt}</h2>
+                            <p className={`text-base mt-1 font-semibold ${item.textColor} !font-circular-book`}>
                                 {item.line_1}
                             </p>
-                            <p className="text-xs mt-1 text-white-800 !font-circular-book">
+                            <p className={`text-xs mt-1 ${item.textColor} !font-circular-book`}>
                                 {item.line_2}
                             </p>
                             {/* <a href="#" className="mt-2 text-c-white-800 self-start text-left">
@@ -63,7 +63,7 @@ const GridCarousel = () => {
                                 // ✅ Smooth transition when clicking dots
                                 setIndex((prev) => (prev === i ? prev : i));
                             }}
-                            className={`w-3 h-3 rounded-full ${index === i ? "bg-black scale-110" : "bg-gray-400"} transition-all duration-300`}
+                            className={`w-3 h-3 rounded-full ${index === i ? "bg-black" : "bg-gray-400"} transition-all duration-300`}
                             aria-label={`Go to slide ${i + 1}`}
                         />
                     ))}
