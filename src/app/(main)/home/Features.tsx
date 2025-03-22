@@ -17,8 +17,11 @@ const Features = () => {
             <SubText>Everything international students need, all in one place.</SubText>
             <CTAButton className="mt-5 bg-c-red-0 hover:bg-c-red-0-h" href={COMINGSOON}>Join NviGo</CTAButton>
 
-            <Cards cards={featureData} className="flex flex-wrap md:flex-nowrap justify-center gap-10 mx-auto !text-left w-[80%] mt-10" cardClassName="w-[min(90vw,24rem)]"/>
-
+            <Cards
+                cards={featureData}
+                className="flex flex-wrap md:flex-nowrap justify-center gap-10 mx-auto !text-left w-[80%] mt-10"
+                cardClassName="w-[min(90vw,24rem)]"
+            />
         </section>
     );
 };
