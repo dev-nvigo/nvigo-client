@@ -4,7 +4,7 @@ import ImageGrid from "./grid/ImageGrid";
 import HeaderOne from "@/components/ui/header1";
 import HeaderTwo from "@/components/ui/header2";
 import SubText from "@/components/ui/sub-text";
-import Subscribe from "@/components/ui/subscribe";
+import Subscribe from "@/components/Subscribe";
 import GridCarousel from "./grid/GridCarousel";
 
 const Hero = () => {

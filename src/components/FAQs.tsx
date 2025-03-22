@@ -5,23 +5,30 @@ import { ChevronDown } from "lucide-react";
 import { faqs } from "@/data/faqs";
 import SubText from "@/components/ui/sub-text";
 import HeaderTwo from "@/components/ui/header2";
+import CTAButton from "@/components/ui/ctabutton";
+import { FAQS } from "@/components/ConstantLinks";
 
 
-export default function FAQs() {
+interface FAQsProps {
+    isFull?: boolean;
+}
+
+const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const faqsData = isFull ? faqs : faqs.slice(0, 6);
 
     return (
         <section className="flex flex-col md:items-center md:justify-center pt-16 pb-8 md:pb-16 w-full">
             {/* Header */}
             <div className="text-center flex flex-col">
-                <HeaderTwo className="text-[#3e965d]">Frequently Asked Questions</HeaderTwo>
+                <HeaderTwo smaller={true} className="text-[#3e965d] md:mb-4">Frequently Asked Questions</HeaderTwo>
                 <SubText>We know moving abroad comes with a lot of questions.</SubText>
                 <SubText>Here are some answers to help you get started!</SubText>
             </div>
 
             {/* FAQ List */}
-            <div className="md:w-full max-w-[90vw] md:max-w-3xl mt-6 md:mt-12 self-center">
-                {faqs.map((faq, index) => (
+            <div className="md:w-full max-w-[90vw] md:max-w-3xl mt-6 self-center">
+                {faqsData.map((faq, index) => (
                     <div key={index} className="border-b border-gray-300">
                         <button
                             className="w-full flex justify-between items-center py-4 text-left text-xs md:text-lg !font-circular-book focus:outline-none"
@@ -39,6 +46,10 @@ export default function FAQs() {
                     </div>
                 ))}
             </div>
+
+            { !isFull && <CTAButton className="mt-7 bg-[#3e965d] hover:bg-[#357d4f] self-center" href={FAQS}>Know More</CTAButton> }
         </section>
     );
 }
+
+export default FAQs;

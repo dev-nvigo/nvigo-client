@@ -1,5 +1,5 @@
 import ConstructionGear from "@/components/animations/ConstructionGears";
-import Subscribe from "@/components/ui/subscribe";
+import Subscribe from "@/components/Subscribe";
 
 const ComingSoon = () => {
     return (

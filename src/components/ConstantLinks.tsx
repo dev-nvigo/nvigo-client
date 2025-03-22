@@ -13,6 +13,7 @@ export const ANALYTICS = "/analytics"
 export const USER_GUIDE = "user-guide"
 export const ABOUT_US = "/aboutus"
 export const BLOGS = "/blogs"
+export const FAQS = "/faqs"
 
 export const SERVICES = "/services"
 export const FORUMS = "/forums"

@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "./home/hero/Hero";
 import Services from "./home/services/Services";
 import Features from "./home/Features";
-import FAQs from "./home/FAQs";
+import FAQs from "@/components/FAQs";
 
 
 const Home = () => {

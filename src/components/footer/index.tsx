@@ -3,7 +3,7 @@
 import Logo from "@/components/Logo";
 import { Linkedin, Instagram } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { COMINGSOON } from "@/components/ConstantLinks";
+import { COMINGSOON, FAQS } from "@/components/ConstantLinks";
 
 interface FooterProps { full?: boolean; };
 
@@ -15,13 +15,13 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
             <div className="max-w-6xl mx-auto px-6">
                 {/* Main Footer Section */}
                 {full &&
-                    <div className="flex flex-row justify-between items-start gap-4 mt-10">
+                    <div className="flex flex-row justify-between items-center md:items-start gap-4 mt-10">
                         {/* Left Section: Logo & Description */}
                         <div className="max-w-sm space-y-4">
                             <div className="h-12">
                                 <Logo isFooter={true} />
                             </div>
-                            <p className="hidden md:block text-gray-500 text-lg !font-circular-book">
+                            <p className="text-gray-500 text-xs md:text-lg !font-circular-book">
                                 Simplifying study abroad with essential services, all in one place.
                             </p>
                         </div>
@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                                 <ul className="text-gray-500 space-y-2">
                                     <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">About</button></li>
                                     <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Services</button></li>
-                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">FAQs</button></li>
+                                    <li><button onClick={() => router.push(FAQS)} className="hover:text-gray-900 !font-circular-med">FAQs</button></li>
                                     <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Contact</button></li>
                                 </ul>
                             </div>
@@ -50,7 +50,7 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
 
                             {/* Right Section: Social Links */}
                             <div className="space-y-3">
-                                <h3 className="text-gray-900 !font-circular font-bold text-lg">Reach us out</h3>
+                                <h3 className="text-gray-900 !font-circular font-bold md:text-lg">Reach us out</h3>
                                 <div className="flex justify-end md:justify-start space-x-4">
                                     <a
                                         href="https://www.linkedin.com/company/nvigoio/"
