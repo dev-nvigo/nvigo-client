@@ -1,16 +1,15 @@
 "use client";
 
-import React from "react";
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
-// import { Menu } from "lucide-react";
-// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
-import { COMINGSOON } from "@/components/ConstantLinks";
+import { COMINGSOON, LOGIN, SIGNUP } from "@/components/ConstantLinks";
 
 const Navbar = () => {
-    // const [openMobileMenu, setOpenMobileMenu] = useState(false);
+    const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const router = useRouter();
 
     return (
@@ -22,23 +21,36 @@ const Navbar = () => {
                 <div className="flex flex-row">
                     <div className="lg:flex items-center gap-8">
                         <div className="hidden lg:flex">
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
+                            <Button variant="ghost" className="text-base !font-circular-book hover:bg-[#16B57F] text-[#232334]" onClick={() => router.push(COMINGSOON)}>
                                 Services
                             </Button>
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
+                            <Button variant="ghost" className="text-base !font-circular-book hover:bg-[#16B57F] text-[#232334]" onClick={() => router.push(COMINGSOON)}>
                                 Forums
                             </Button>
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
+                            <Button variant="ghost" className="text-base !font-circular-book hover:bg-[#16B57F] text-[#232334]" onClick={() => router.push(COMINGSOON)}>
                                 GoTools
                             </Button>
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
+                            <Button variant="ghost" className="text-base !font-circular-book hover:bg-[#16B57F] text-[#232334]" onClick={() => router.push(COMINGSOON)}>
                                 Blogs
                             </Button>
                         </div>
                     </div>
 
+                </div>
+
+                <div>
+                    <Button variant="ghost" className="text-base !font-circular-book text-[#232334] hover:bg-[#fe6b64] hover:text-white" onClick={() => router.push(LOGIN)}>
+                        Log In
+                    </Button>
+                    <Button
+                        variant="default"
+                        onClick={() => router.push(SIGNUP)}
+                        className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56] !font-circular font-bold"
+                    >
+                        Sign Up
+                    </Button>
                     {/* Mobile Menu */}
-                    {/* <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
+                    <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
                         <SheetTrigger asChild className="lg:hidden">
                             <Button variant="ghost" size="icon">
                                 <Menu className="h-5 w-5" />
@@ -52,16 +64,8 @@ const Navbar = () => {
                                 <Button className="!font-circular-book" variant="ghost" onClick={() => router.push(COMINGSOON)}>Blogs</Button>
                             </div>
                         </SheetContent>
-                    </Sheet> */}
+                    </Sheet>
                 </div>
-
-                <Button
-                    variant="default"
-                    onClick={() => router.push(COMINGSOON)}
-                    className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56] !font-circular font-bold"
-                >
-                    Join NviGo
-                </Button>
             </div>
         </div>
     );

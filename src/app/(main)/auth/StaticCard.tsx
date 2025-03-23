@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const StaticCard: React.FC = () => {
     return (
-        <div className="hidden md:flex w-full h-full justify-center items-center p-10 max-w-[50vw]">
+        <div className="hidden md:flex w-full h-[120vh] justify-center items-center p-10 max-w-[50vw]">
             <div className="relative w-[80%] h-full bg-gradient-to-t from-[#16B57F] to-[#61C986] rounded-xl shadow-md overflow-hidden flex flex-col items-center text-center justify-evenly">
                 <div className="z-10 text-white">
                     <h1 className="text-3xl leading-tight !font-circular-book">

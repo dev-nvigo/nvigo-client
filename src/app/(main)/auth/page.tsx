@@ -28,7 +28,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="flex items-center h-screen bg-c-white-150">
+    <div className="flex items-center bg-c-white-150">
       <StaticCard />
 
       <div className="w-1/2 flex flex-col items-center justify-center p-8">
