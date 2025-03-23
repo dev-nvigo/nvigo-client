@@ -21,7 +21,7 @@ function boldNviGo(text: string) {
         return (
             <React.Fragment key={index}>
                 {part}
-                <span style={{ fontWeight: '500' }}>NviGo</span>
+                <span className="!font-circular-med">NviGo</span>
             </React.Fragment>
         );
     });
@@ -45,10 +45,10 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
                 {faqsData.map((faq, index) => (
                     <div key={index} className="border-b border-gray-300">
                         <button
-                            className="w-full flex justify-between items-center py-4 text-left text-xs md:text-lg !font-circular-book focus:outline-none"
+                            className="w-full flex justify-between items-center py-4 text-left text-xs md:text-lg focus:outline-none"
                             onClick={() => setOpenIndex(openIndex === index ? null : index)}
                         >
-                            <div>{boldNviGo(faq.question)}</div>
+                            <div className="!font-circular-book">{boldNviGo(faq.question)}</div>
                             <ChevronDown
                                 className={`min-w-5 min-h-5 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
                             />
