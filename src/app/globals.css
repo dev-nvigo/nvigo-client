@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @plugin 'tailwindcss-animate';
 
 @variant dark (&:is(.dark *));
@@ -46,6 +48,7 @@
   --font-circular-med: "Circular Std Medium", sans-serif;
 
   /* Colors */
+  --color-c-blue-100: #0A8ED9;
   --color-c-blue-200: #569ddf;
   --color-c-blue-200-h: #297acc;
   --color-c-green-0: #16b57f;
@@ -112,11 +115,11 @@
 
 /* Apply global styles */
 * {
-  font-family: var(--font-roboto);
+  font-family: var(--font-circular-book);
 }
 
 * {
-  font-family: "Roboto";
+  font-family: "Circular Std Book";
 }
 
 .herogreen {
@@ -137,25 +140,34 @@
 
 @layer base {
   :root {
-    --background: 11 0% 100%;
-    --foreground: 11 0% 10%;
-    --card: 11 0% 100%;
-    --card-foreground: 11 0% 15%;
-    --popover: 11 0% 100%;
-    --popover-foreground: 11 95% 10%;
-    --primary: 11 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 11 10% 90%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: -27 10% 95%;
-    --muted-foreground: 11 0% 40%;
-    --accent: -27 10% 90%;
-    --accent-foreground: 11 0% 15%;
-    --destructive: 0 50% 50%;
-    --destructive-foreground: 11 0% 100%;
-    --border: 11 20% 82%;
-    --input: 11 20% 50%;
-    --ring: 11 0% 100%;
+    --background: 0 0% 100%; /* #ffffff */
+    --foreground: 257 25% 14%; /* #26203B */
+
+    --primary: 195 88% 45%; /* #0A8ED9 */
+    --primary-foreground: 0 0% 100%; /* #ffffff */
+
+    --secondary: 228 100% 97%; /* #ECF0FF */
+    --secondary-foreground: 257 25% 14%; /* #26203B */
+
+    --muted: 0 0% 84%; /* #D7D7D7 */
+    --muted-foreground: 270 3% 62%; /* #9C9AA5 */
+
+    --accent: 215 61% 14%; /* #0D2539 */
+    --accent-foreground: 0 0% 100%; /* #ffffff */
+
+    --destructive: 351 76% 51%; /* #D72638 (approx.) */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 84%; /* #D7D7D7 */
+    --input: 228 100% 97%; /* #ECF0FF */
+    --ring: 195 88% 45%; /* #0A8ED9 */
+
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 257 25% 14%; /* #26203B */
+
+    --popover: 0 0% 100%; /* #ffffff */
+    --popover-foreground: 257 25% 14%; /* #26203B */
+
     --radius: 0.75rem;
   }
 
@@ -190,20 +202,5 @@
 
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-@layer utilities {
-  .text-blue-200 {
-    color: var(--color-green);
-  }
-  .text-custom-blue {
-    color: var(--color-blue);
-  }
-  .text-custom-red {
-    color: var(--color-red);
-  }
-  .text-custom-black {
-    color: var(--color-black);
   }
 }
