@@ -21,7 +21,22 @@ function boldNviGo(text: string) {
         return (
             <React.Fragment key={index}>
                 {part}
-                <span className="!font-circular-med">NviGo</span>
+                <span
+                    className={`text-[#0A8ED9] tracking-wide mt-2 !font-orange-juice`}
+                >
+                    Nvi
+                </span>
+
+                <span
+                    style={{
+                        background: "conic-gradient(from 153deg, #FE6B64 28%, #569DDF 40%, #61C986 63%, #FDB900 86%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                    }}
+                    className={`tracking-wide mt-2 !font-orange-juice`}
+                >
+                    Go
+                </span>
             </React.Fragment>
         );
     });
@@ -45,7 +60,7 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
                 {faqsData.map((faq, index) => (
                     <div key={index} className="border-b border-gray-300">
                         <button
-                            className="w-full flex justify-between items-center py-4 text-left text-xs md:text-lg focus:outline-none"
+                            className="w-full flex justify-between items-center py-4 text-left text-sm md:text-lg focus:outline-none"
                             onClick={() => setOpenIndex(openIndex === index ? null : index)}
                         >
                             <div className="!font-circular-book">{boldNviGo(faq.question)}</div>
@@ -54,7 +69,7 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
                             />
                         </button>
                         { openIndex === index && (
-                        <p className="text-gray-600 text-xs md:text-base !font-circular-book pb-4 px-4">{boldNviGo(faq.answer)}</p>
+                        <p className="text-gray-600 text-sm md:text-base !font-circular-book pb-4 px-4">{boldNviGo(faq.answer)}</p>
                     )}
             </div>
                 ))}
