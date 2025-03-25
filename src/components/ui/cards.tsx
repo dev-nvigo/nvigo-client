@@ -1,7 +1,9 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { COMINGSOON } from "@/components/ConstantLinks";
-import Link from "next/link";
 
 
 interface CardProps {
@@ -27,12 +29,14 @@ interface CardsProps {
 }
 
 const Cards: React.FC<CardsProps> = ({ cards, className = "", cardClassName = "" }) => {
+    const router = useRouter();
+
     return (
         <div className={`${className}`}>
             {cards.map((card, index) => (
-                <Link
+                <div
                     key={index}
-                    href={COMINGSOON}
+                    onClick={() => router.push(COMINGSOON)}
                     className={`cursor-pointer rounded-xl overflow-hidden shadow-md relative flex flex-col flex-grow border-black border-[0.5px] transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:bg-opacity-90 ${cardClassName}`}
                 >
                     <div className="relative w-full aspect-[16/9]">
@@ -97,7 +101,7 @@ const Cards: React.FC<CardsProps> = ({ cards, className = "", cardClassName = ""
                             </div>
                         </div>}
                     </div>
-                </Link>
+                </div>
             ))}
         </div>
     );

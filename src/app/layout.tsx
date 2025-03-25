@@ -1,8 +1,6 @@
-import { Providers } from "./providers";
+import ReduxProvider from "./providers/Provider";
 import { Toaster } from "react-hot-toast";
-import { SessionSyncer } from "@/components/SessionSyncer";
 import "./globals.css";
-
 
 export const metadata = {
     title: "NviGo - Navigational Amigo",
@@ -13,11 +11,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body>
-                <Providers>
-                    <SessionSyncer />
+                <ReduxProvider>
                     <Toaster position="bottom-center" gutter={56} />
                     {children}
-                </Providers>
+                </ReduxProvider>
             </body>
         </html>
     );
