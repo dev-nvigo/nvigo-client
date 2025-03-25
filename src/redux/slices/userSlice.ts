@@ -1,34 +1,38 @@
-// redux/slices/userSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
-    email: string | null;
-    token: string | null; // or any other auth token you store
-    isLoggedIn: boolean;
-}
-
-const initialState: UserState = {
-    email: null,
-    token: null,
-    isLoggedIn: false,
+type User = {
+    id: string;
+    email: string;
+    fullName?: string;
+    profileCompleted?: boolean;
+    // Add any additional fields you store from Supabase or profile
 };
 
-export const userSlice = createSlice({
+type UserState = {
+    user: User | null;
+};
+
+const initialState: UserState = {
+    user: null,
+};
+
+const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setUser(state, action: PayloadAction<{ email: string; token: string }>) {
-            state.email = action.payload.email;
-            state.token = action.payload.token;
-            state.isLoggedIn = true;
+        setUser(state, action: PayloadAction<User>) {
+            state.user = action.payload;
         },
-        logout(state) {
-            state.email = null;
-            state.token = null;
-            state.isLoggedIn = false;
+        clearUser(state) {
+            state.user = null;
+        },
+        updateUser(state, action: PayloadAction<Partial<User>>) {
+            if (state.user) {
+                state.user = { ...state.user, ...action.payload };
+            }
         },
     },
 });
 
-export const { setUser, logout } = userSlice.actions;
+export const { setUser, clearUser, updateUser } = userSlice.actions;
 export default userSlice.reducer;
