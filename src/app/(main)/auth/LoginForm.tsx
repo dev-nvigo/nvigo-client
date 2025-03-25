@@ -16,15 +16,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { signInSchema, SignInFormData } from "@/utils/validations/signInSchema";
+import { signInSchema, SignInFormData } from "@/utils/validations";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { setUser } from "@/redux/slices/userSlice";
-
-// 1. Zod Schema
-// - Validates email format
-// - Ensures password is at least 8 characters
-// - rememberMe is optional (defaults to false if not provided)
 
 
 export default function LoginForm() {

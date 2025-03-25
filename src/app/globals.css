@@ -143,7 +143,7 @@
     --background: 0 0% 100%; /* #ffffff */
     --foreground: 257 25% 14%; /* #26203B */
 
-    --primary: 195 88% 45%; /* #0A8ED9 */
+    --primary: 202 91% 45%; /* #0A8ED9 */
     --primary-foreground: 0 0% 100%; /* #ffffff */
 
     --secondary: 228 100% 97%; /* #ECF0FF */
@@ -159,7 +159,7 @@
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 84%; /* #D7D7D7 */
-    --input: 216 13% 84%; /* #ECF0FF */
+    --input: 202 91% 75%; /* #ECF0FF */
     --ring: 195 88% 45%; /* #0A8ED9 */
 
     --card: 0 0% 100%; /* #ffffff */

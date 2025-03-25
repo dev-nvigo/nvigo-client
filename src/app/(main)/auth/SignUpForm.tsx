@@ -19,7 +19,7 @@ import {
     containsNumberOrSymbol,
     doesNotContainEmailUsername,
 } from "@/utils/validations/passwordUtils";
-import { signUpSchema, SignUpFormData } from "@/utils/validations/signUpSchema";
+import { signUpSchema, SignUpFormData } from "@/utils/validations";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { setUser } from "@/redux/slices/userSlice";
