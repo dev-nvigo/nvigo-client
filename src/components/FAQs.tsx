@@ -49,11 +49,11 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
     return (
         <section className="flex flex-col md:items-center md:justify-center pt-16 pb-8 md:pb-16 w-full">
             {/* Header */}
-            <div className="text-center flex flex-col">
+            <h2 className="text-center flex flex-col">
                 <HeaderTwo smaller={true} className="text-[#3e965d] md:mb-4">Frequently Asked Questions</HeaderTwo>
                 <SubText>We know moving abroad comes with a lot of questions.</SubText>
                 <SubText>Here are some answers to help you get started!</SubText>
-            </div>
+            </h2>
 
             {/* FAQ List */}
             <div className="md:w-full max-w-[90vw] md:max-w-3xl mt-6 self-center">

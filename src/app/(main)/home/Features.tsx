@@ -10,10 +10,10 @@ import { COMINGSOON } from "@/components/ConstantLinks";
 const Features = () => {
     return (
         <section className="w-full flex flex-col items-center text-center py-12 px-4 md:px-12 lg:px-20 mt-15 md:mt-0">
-            <div className="max-w-4xl px-6 flex flex-col md:block items-center md:items-start">
+            <h2 className="max-w-4xl px-6 flex flex-col md:block items-center md:items-start">
                 <HeaderOne type={2}>Things that&nbsp;</HeaderOne>
                 <HeaderTwo className="mt-3 text-c-red-0">Matter!</HeaderTwo>
-            </div>
+            </h2>
             <SubText>Everything international students need, all in one place.</SubText>
             <CTAButton className="mt-5 bg-c-red-0 hover:bg-c-red-0-h" href={COMINGSOON}>Join NviGo</CTAButton>
 

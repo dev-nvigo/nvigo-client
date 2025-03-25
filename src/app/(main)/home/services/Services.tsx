@@ -13,10 +13,10 @@ const Services = () => {
             <div className="relative w-full flex flex-col-reverse md:flex-row items-center justify-center px-5 md:px-10 gap-10">
                 <FloatingQuestions />
                 <div className="flex flex-col w-full md:max-w-[50%] items-center md:items-start">
-                    <div className="flex flex-col md:block items-center md:items-start">
+                    <h2 className="flex flex-col md:block items-center md:items-start">
                         <HeaderOne type={2}>Everything You Need,&nbsp;</HeaderOne>
                         <HeaderTwo className="mt-3 text-c-green-100">Hassle-Free</HeaderTwo>
-                    </div>
+                    </h2>
                     <SubText>Seamlessly access trusted vendors for housing,</SubText>
                     <SubText>banking, SIM cards, travel, and more. All in one</SubText>
                     <SubText>place. Make your transition effortless and focus</SubText>

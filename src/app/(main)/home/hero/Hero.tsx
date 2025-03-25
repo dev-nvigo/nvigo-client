@@ -14,14 +14,16 @@ const Hero = () => {
             <div className="relative w-full flex flex-col md:flex-row items-center justify-center px-10 gap-10 max-w-7xl mx-auto">
                 <div className="flex flex-col w-full md:max-w-[50%] items-center md:items-start">
                     <GridCarousel />
-                    <HeaderOne type={1}>Moving Abroad</HeaderOne>
+                    <h1>
+                        <HeaderOne type={1}>Moving Abroad</HeaderOne>
+                    </h1>
                     <HeaderTwo className="mt-3 text-c-blue-200">Made Simple</HeaderTwo>
                     <SubText>Manage everything-loans, housing, SIM cards,</SubText>
                     <SubText>banking, jobs, and more-all in one place.</SubText>
                     <SubText>NviGo makes your transition effortless.</SubText>
                     {/* <CTAButton className="mt-5 bg-c-blue-200 hover:bg-c-blue-200-h" href={COMINGSOON}>Explore Services</CTAButton> */}
 
-                    <Subscribe isHero={true}/>
+                    <Subscribe isHero={true} />
                 </div>
                 <ImageGrid />
             </div>
