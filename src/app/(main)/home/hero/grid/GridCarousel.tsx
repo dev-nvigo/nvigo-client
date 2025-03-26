@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useSwipeable } from "react-swipeable";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -10,20 +10,27 @@ import { gridData } from "@/data/heroItems";
 const GridCarousel = () => {
     const [index, setIndex] = useState(0);
     const [timerDuration, setTimerDuration] = useState(3000);
-    let interval: NodeJS.Timeout;
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    const startTimer = (duration: number) => {
-        clearInterval(interval);
-        interval = setInterval(() => {
+    const startTimer = useCallback((duration: number) => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        intervalRef.current = setInterval(() => {
             setIndex((prev) => (prev + 1) % gridData.length);
-        }, duration); // Set the interval to the new duration
-    };
+        }, duration);
+    }, []);
 
-    // Start the interval with the default timer duration when component mounts
     useEffect(() => {
         startTimer(timerDuration);
-        return () => clearInterval(interval); // Cleanup interval on unmount
-    }, [timerDuration]);
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [timerDuration, startTimer]);
 
     const handlers = useSwipeable({
         onSwipedLeft: () => {
@@ -37,11 +44,6 @@ const GridCarousel = () => {
         preventScrollOnSwipe: true,
         trackMouse: true,
     });
-
-    useEffect(() => {
-        // Restart the timer with the updated duration
-        startTimer(timerDuration);
-    }, [timerDuration]);
 
     return (
         <>

@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "./home/hero/Hero";
 import Services from "./home/services/Services";
 import Features from "./home/Features";
+import BlogScroll from "./home/BlogScroll";
 import FAQs from "@/components/FAQs";
 
 
@@ -20,18 +21,11 @@ export const metadata = {
 const Home = () => {
     return (
         <div className="flex flex-col">
-            <section id="hero">
-                <Hero />
-            </section>
-            <section id="services">
-                <Services />
-            </section>
-            <section id="features">
-                <Features />
-            </section>
-            <section id="faqs">
-                <FAQs />
-            </section>
+            <Hero />
+            <Services />
+            <Features />
+            <BlogScroll />
+            <FAQs />
         </div>
     );
 };
