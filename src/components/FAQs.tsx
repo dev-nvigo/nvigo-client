@@ -47,7 +47,7 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
     const faqsData = isFull ? faqs : faqs.slice(0, 6);
 
     return (
-        <section className="flex flex-col md:items-center md:justify-center pt-16 pb-8 md:pb-16 w-full">
+        <section id="faqs" className="flex flex-col md:items-center md:justify-center pt-16 pb-8 md:pb-16 w-full">
             {/* Header */}
             <h2 className="text-center flex flex-col">
                 <HeaderTwo smaller={true} className="text-[#3e965d] md:mb-4">Frequently Asked Questions</HeaderTwo>

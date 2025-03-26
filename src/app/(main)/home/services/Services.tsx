@@ -9,7 +9,7 @@ import { COMINGSOON } from "@/components/ConstantLinks";
 
 const Services = () => {
     return (
-        <div className="relative w-full md:min-h-screen flex items-center justify-center overflow-hidden bg-white mt-15 md:mt-0">
+        <section id="services" className="relative w-full md:min-h-screen flex items-center justify-center overflow-hidden bg-white mt-15 md:mt-0">
             <div className="relative w-full flex flex-col-reverse md:flex-row items-center justify-center px-5 md:px-10 gap-10">
                 <FloatingQuestions />
                 <div className="flex flex-col w-full md:max-w-[50%] items-center md:items-start">
@@ -24,7 +24,7 @@ const Services = () => {
                     <CTAButton className="mt-5 bg-c-green-100 hover:bg-c-green-0" href={COMINGSOON}>View All Services</CTAButton>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

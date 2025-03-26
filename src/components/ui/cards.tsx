@@ -1,15 +1,14 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { COMINGSOON } from "@/components/ConstantLinks";
+import Link from "next/link";
 
 
 interface CardProps {
-    frame: string;
+    frame?: string;
     title: string;
-    description: string;
+    description?: string;
+    excerpt?: string;
+    slug?: string;
     image?: string;
     service?: {
         name: string;
@@ -24,24 +23,24 @@ interface CardProps {
 
 interface CardsProps {
     cards: CardProps[];
+    basePath: string;
     className?: string;
     cardClassName?: string;
 }
 
-const Cards: React.FC<CardsProps> = ({ cards, className = "", cardClassName = "" }) => {
-    const router = useRouter();
-
+const Cards: React.FC<CardsProps> = ({ cards, basePath, className = "", cardClassName = "" }) => {
     return (
         <div className={`${className}`}>
-            {cards.map((card, index) => (
-                <div
+            {cards.map((card, index) => {
+                return (
+                <Link
                     key={index}
-                    onClick={() => router.push(COMINGSOON)}
+                    href={`${basePath}/${card.slug}`}
                     className={`cursor-pointer rounded-xl overflow-hidden shadow-md relative flex flex-col flex-grow border-black border-[0.5px] transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:bg-opacity-90 ${cardClassName}`}
                 >
                     <div className="relative w-full aspect-[16/9]">
                         <Image
-                            src={card.frame}
+                            src={card.frame ? card.frame : `/images/blogs/${card.slug}.jpg`}
                             alt={`${card.title} frame`}
                             layout="fill"
                             objectFit="cover"
@@ -73,7 +72,7 @@ const Cards: React.FC<CardsProps> = ({ cards, className = "", cardClassName = ""
 
                     <div className="bg-[#2F2E43] text-white py-4 px-5 flex flex-col h-full justify-between">
                         <h3 className="text-sm leading-tight !font-circular font-bold break-words whitespace-normal">{card.title}</h3>
-                        <p className="text-xs text-c-white-400 py-2 !font-circular-book break-words whitespace-normal">{card.description}</p>
+                        <p className="text-xs text-c-white-400 py-2 !font-circular-book break-words whitespace-normal">{card.description ? card.description : card.excerpt}</p>
 
                         {card.rating !== undefined && (
                             <div className="flex gap-1 py-2">
@@ -88,7 +87,7 @@ const Cards: React.FC<CardsProps> = ({ cards, className = "", cardClassName = ""
                         {card.author && <div className="flex items-center gap-2">
                             <div className="w-1/8 max-w-[2rem] aspect-square rounded-full overflow-hidden bg-gray-800">
                                 <Image
-                                    src={card.author.avatar}
+                                    src={`/images/authors/${card.author.avatar}`}
                                     alt={card.author.name}
                                     layout="responsive"
                                     width={1}
@@ -101,8 +100,8 @@ const Cards: React.FC<CardsProps> = ({ cards, className = "", cardClassName = ""
                             </div>
                         </div>}
                     </div>
-                </div>
-            ))}
+                </Link>
+            )})}
         </div>
     );
 };

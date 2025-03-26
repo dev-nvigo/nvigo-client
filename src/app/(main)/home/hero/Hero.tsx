@@ -9,7 +9,7 @@ import GridCarousel from "./grid/GridCarousel";
 
 const Hero = () => {
     return (
-        <div className="w-full h-full min-h-[90vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-white">
+        <section id="hero" className="w-full h-full min-h-[90vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-white">
             <GridBackground />
             <div className="relative w-full flex flex-col md:flex-row items-center justify-center px-10 gap-10 max-w-7xl mx-auto">
                 <div className="flex flex-col w-full md:max-w-[50%] items-center md:items-start">
@@ -28,7 +28,7 @@ const Hero = () => {
                 <ImageGrid />
             </div>
 
-        </div>
+        </section>
     );
 };
 
