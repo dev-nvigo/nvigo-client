@@ -1,6 +1,6 @@
 export const gridData = [
     {
-        src: "/svgs/hero/Travel & Flight Booking.svg",
+        src: "/svgs/hero/Travel n Flight Booking.svg",
         alt: "Travel & Flight Booking",
         line_1: "✈️ Fly smarter, save more!",
         line_2: "Compare affordable flight options and get student discounts for a budget-friendly journey.",
@@ -36,7 +36,7 @@ export const gridData = [
         scale: ""
     },
     {
-        src: "/svgs/hero/Food & Grocery Delivery.svg",
+        src: "/svgs/hero/Food n Grocery Delivery.svg",
         alt: "Food & Grocery Delivery",
         line_1: "🥗 Eat well, live better!",
         line_2: "Find student meal plans, grocery delivery services, and budget-friendly dining options.",
@@ -45,7 +45,7 @@ export const gridData = [
         scale: "scale-115"
     },
     {
-        src: "/svgs/hero/Banking & Finances.svg",
+        src: "/svgs/hero/Banking n Finances.svg",
         alt: "Banking & Finances",
         line_1: "💳 Set up hassle-free banking!",
         line_2: "Open a student-friendly account, get credit cards, and manage finances easily in the U.S.",
@@ -54,7 +54,7 @@ export const gridData = [
         scale: ""
     },
     {
-        src: "/svgs/hero/Job Portals & Placement.svg",
+        src: "/svgs/hero/Job Portals n Placement.svg",
         alt: "Job Portals & Placement",
         line_1: "💼 Kickstart your career!",
         line_2: "Explore job portals, internships, and networking opportunities to land your dream role.",
@@ -63,7 +63,7 @@ export const gridData = [
         scale: "scale-120"
     },
     {
-        src: "/svgs/hero/Mobile SIM & Data Plans.svg",
+        src: "/svgs/hero/Mobile SIM n Data Plans.svg",
         alt: "Mobile SIM & Data Plans",
         line_1: "📶 Stay connected anywhere!",
         line_2: "Choose from the best SIM card and data plans designed for international students.",
