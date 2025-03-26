@@ -3,6 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @plugin 'tailwindcss-animate';
+@plugin "@tailwindcss/typography";
 
 @variant dark (&:is(.dark *));
 
@@ -48,7 +49,7 @@
   --font-circular-med: "Circular Std Medium", sans-serif;
 
   /* Colors */
-  --color-c-blue-100: #0A8ED9;
+  --color-c-blue-100: #0a8ed9;
   --color-c-blue-200: #569ddf;
   --color-c-blue-200-h: #297acc;
   --color-c-green-0: #16b57f;
@@ -202,5 +203,74 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+  .prose h1 {
+    font-family: "Circular Std", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 2.5rem !important;
+    color: #000000 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .prose h2 {
+    font-family: "Circular Std Book", sans-serif !important;
+    font-size: 2rem !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+  }
+
+  .prose h3 {
+    font-family: "Circular Std Book", sans-serif !important;
+    font-size: 1.5rem !important;
+    color: #000000 !important;
+    font-weight: 500 !important;
+  }
+
+  .prose hr {
+    margin: 2em 0em !important;
+  }
+
+  .prose p {
+    font-family: "Circular Std Book", sans-serif !important;
+    color: #000000 !important;
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+    margin: auto !important;
+  }
+
+  .prose ul {
+    padding-left: 1.5rem !important;
+    list-style-type: disc !important;
+    margin: auto !important;
+  }
+
+  .prose li {
+    color: #000000 !important;
+    margin: auto !important;
+  }
+
+  .prose a {
+    color: #000000 !important;
+  }
+
+  .prose strong {
+    color: #000000 !important;
+    font-family: "Circular Std", sans-serif !important;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #888888 !important;
+    padding-left: 1rem !important;
+    color: #000000 !important;
+    font-style: italic !important;
+  }
+
+
+}
+
+@layer utilities {
+  /* Add custom typography styles under the .prose class */
+  .prose {
+    @apply prose prose-lg prose-invert max-w-none;
   }
 }

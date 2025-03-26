@@ -8,9 +8,10 @@ import { HOME } from "@/components/ConstantLinks";
 
 interface SubscribeProps {
     isHero?: boolean;
+    isNewsletter?: boolean;
 }
 
-const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
+const Subscribe: React.FC<SubscribeProps> = ({ isHero = false, isNewsletter = false }) => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -18,11 +19,12 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const headerFont = isHero ? "text-center !font-circular-book text-c-white-700 mt-5 md:mt-10 text-xl sm:text-xl md:text-3xl" : "!font-circular text-black text-xl sm:text-xl md:text-3xl";
-    const inputFormat = isHero ? "hidden md:block" : "";
-    const divFormat = isHero ? "flex flex-col items-center md:block" : "";
+    const inputFormat = (isHero || isNewsletter) ? "hidden md:block" : "";
+    const divFormat = (isHero || isNewsletter) ? "flex flex-col items-center md:block" : "";
     const paraText = isHero ? "..." : "- with all the features and services you need!";
 
     const router = useRouter();
+    const divClass = isNewsletter ? "max-w-5xl w-full mx-auto py-14 px-8 bg-[#16B57F] rounded-2xl shadow-lg flex flex-col items-center justify-center text-center" : "p-2 bg-[#16B57F] rounded-full shadow-lg mt-4 w-fit md:w-auto";
 
     // Open the modal when Subscribe is clicked
     const handleSubscribeClick = () => {
@@ -73,12 +75,12 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
 
     return (
         <div className={divFormat}>
-            <h1 className={`mt-4 ${headerFont}`}>
+            {!isNewsletter && <h1 className={`mt-4 ${headerFont}`}>
                 We&apos;re Almost Ready to Launch! 🚀
-            </h1>
+            </h1>}
 
             {/* Content */}
-            {!isHero && <>
+            {(!isHero && !isNewsletter) && <>
                 <p className="mt-3 text-xs sm:text-xs md:text-sm !font-circular-book text-c-white-800 max-w-2xl">
                     Very soon, <span className="!font-circular font-bold">NviGo</span> will be fully live {paraText}
                 </p>
@@ -87,11 +89,16 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
                 </p>
             </>}
 
-
-            <div className="p-2 bg-[#16B57F] rounded-full shadow-lg mt-4 w-fit md:w-auto">
-                <div className="flex flex-row gap-4 items-center justify-center text-center">
+            <div className={divClass}>
+                <div className="flex flex-col gap-4 items-center justify-center text-center">
+                    {isNewsletter && <h2 className="text-white text-xl md:text-3xl font-bold leading-tight !font-circular">
+                        Join Our Newsletter - Your Study Abroad Insider!
+                    </h2>}
+                    {isNewsletter && <p className="text-white text-sm md:text-base !font-circular-book max-w-xl">
+                        Get expert tips, exclusive deals, and the latest updates on student life, career opportunities, and essential services—straight to your inbox!
+                    </p>}
                     <div
-                        className="flex items-center rounded-full p-2 w-full max-w-lg bg-white/40"
+                        className="flex items-center justify-center rounded-full p-2 w-fit md:w-full max-w-lg bg-white/40"
                     >
                         <input
                             type="email"
