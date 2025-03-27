@@ -2,13 +2,12 @@
 
 import Logo from "@/components/Logo";
 import { Linkedin, Instagram } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { COMINGSOON, FAQS } from "@/components/ConstantLinks";
+import Link from "next/link";
 
 interface FooterProps { full?: boolean; };
 
 const Footer: React.FC<FooterProps> = ({ full = true }) => {
-    const router = useRouter();
 
     return (
         <footer className="w-full bg-white pb-5">
@@ -37,10 +36,10 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <div className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Quick Links</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">About</button></li>
-                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Services</button></li>
-                                    <li><button onClick={() => router.push(FAQS)} className="hover:text-gray-900 !font-circular-med">FAQs</button></li>
-                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Contact</button></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">About</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Services</Link></li>
+                                    <li><Link href={FAQS} className="hover:text-gray-900 !font-circular-med">FAQs</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Contact</Link></li>
                                 </ul>
                             </div>
                             
@@ -48,8 +47,8 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <div className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Legal</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Privacy Policy</button></li>
-                                    <li><button onClick={() => router.push(COMINGSOON)} className="hover:text-gray-900 !font-circular-med">Terms and Conditions</button></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Privacy Policy</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Terms and Conditions</Link></li>
                                 </ul>
                             </div>
 

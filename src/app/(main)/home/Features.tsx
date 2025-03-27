@@ -18,6 +18,7 @@ const Features = () => {
             <CTAButton className="mt-5 bg-c-red-0 hover:bg-c-red-0-h" href={COMINGSOON}>Join NviGo</CTAButton>
 
             <Cards
+                basePath=""
                 cards={featureData}
                 className="flex flex-wrap md:flex-nowrap justify-center gap-10 mx-auto !text-left w-[80%] mt-10"
                 cardClassName="w-[min(90vw,24rem)]"

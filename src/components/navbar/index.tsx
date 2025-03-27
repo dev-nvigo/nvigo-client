@@ -6,12 +6,11 @@ import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 // import { Menu } from "lucide-react";
 // import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useRouter } from "next/navigation";
 import { COMINGSOON } from "@/components/ConstantLinks";
+import Link from "next/link";
 
 const Navbar = () => {
     // const [openMobileMenu, setOpenMobileMenu] = useState(false);
-    const router = useRouter();
 
     return (
         <div id="navbar" className="top-0 left-0 w-full bg-white shadow z-50">
@@ -22,17 +21,17 @@ const Navbar = () => {
                 <div className="flex flex-row">
                     <div className="lg:flex items-center gap-8">
                         <div className="hidden lg:flex">
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
-                                Services
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <Link href={COMINGSOON} className="!font-circular-book">Services</Link>
                             </Button>
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
-                                Forums
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <Link href={COMINGSOON} className="!font-circular-book">Forums</Link>
                             </Button>
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
-                                GoTools
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <Link href={COMINGSOON} className="!font-circular-book">GoTools</Link>
                             </Button>
-                            <Button variant="ghost" className="text-base !font-circular-book text-[#232334]" onClick={() => router.push(COMINGSOON)}>
-                                Blogs
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <Link href={COMINGSOON} className="!font-circular-book">Blogs</Link>
                             </Button>
                         </div>
                     </div>
@@ -57,10 +56,9 @@ const Navbar = () => {
 
                 <Button
                     variant="default"
-                    onClick={() => router.push(COMINGSOON)}
-                    className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56] !font-circular font-bold"
+                    className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
                 >
-                    Join NviGo
+                    <Link href={COMINGSOON} className="!font-circular font-bold">Join NviGo</Link>
                 </Button>
             </div>
         </div>

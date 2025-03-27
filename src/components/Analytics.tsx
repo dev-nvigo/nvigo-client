@@ -9,6 +9,7 @@ export default function Analytics() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
+        if (!window.gtag) return;
         const url = pathname + (searchParams.toString() ? `?${searchParams}` : '');
         gtag.pageview(url);
     }, [pathname, searchParams]);
