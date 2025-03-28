@@ -4,12 +4,14 @@ declare global {
     }
 }
 
-const GA_TRACKING_ID = process.env.GA_TRACKING_ID!;
-
 // Track pageviews
 export const pageview = (url: string) => {
-    console.log('[GA Pageview Triggered]', url);
-    window.gtag('config', GA_TRACKING_ID, {
+    console.log("Logged", url);
+
+    if (typeof window === 'undefined' || !window.gtag) return;
+    console.log("Registered");
+
+    window.gtag('event', 'page_view', {
         page_path: url,
     });
 };

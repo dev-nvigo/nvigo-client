@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import { HOME } from "@/components/ConstantLinks";
-
+import { event } from "@/lib/gtag";
 
 interface SubscribeProps {
     isHero?: boolean;
@@ -17,6 +17,8 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const [fieldsInteracted, setFieldsInteracted] = useState(new Set<string>());
+
     const headerFont = isHero ? "text-center !font-circular-book text-c-white-700 mt-5 md:mt-10 text-xl sm:text-xl md:text-3xl" : "!font-circular text-black text-xl sm:text-xl md:text-3xl";
     const inputFormat = isHero ? "hidden md:block" : "";
     const divFormat = isHero ? "flex flex-col items-center md:block" : "";
@@ -24,10 +26,39 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
 
     const router = useRouter();
 
+    // Reusable event tracking function
+    const trackEvent = (action: string, label: string, value: number = 1) => {
+        console.log("Tracking event", action, label);
+        
+        event({
+            action: action,
+            category: "Subscription",
+            label: label,
+            value: value,
+        });
+    };
+
     // Open the modal when Subscribe is clicked
     const handleSubscribeClick = () => {
+        trackEvent("click", "Subscribe Button");
         setShowPopup(true);
         setMessage('');
+    };
+
+    // Track field focus
+    const handleFieldFocus = (field: string) => {
+        if (!fieldsInteracted.has(field)) {
+            setFieldsInteracted(prev => new Set(prev).add(field));  // Ensure it's only tracked once
+            trackEvent("focus", `${field} Field Focused`);
+        }
+    };
+
+    // Track field completion (when user starts typing)
+    const handleFieldCompletion = (field: string, value: string) => {
+        if (value && !fieldsInteracted.has(field)) {
+            setFieldsInteracted(prev => new Set(prev).add(field));  // Ensure completion is tracked
+            trackEvent("complete", `${field} Field Completed`);
+        }
     };
 
     // Handle final submission to API
@@ -45,6 +76,7 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
         setLoading(false);
 
         if (response.ok) {
+            trackEvent("submit", "Form Submitted - Success");
             setMessage('Successfully subscribed!');
 
             setTimeout(() => {
@@ -55,6 +87,7 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
                 router.push(HOME);
             }, 2000);
         } else {
+            trackEvent("submit", "Form Submitted - Failure");
             setMessage(data.error || 'Something went wrong');
         }
     };
@@ -87,7 +120,6 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
                 </p>
             </>}
 
-
             <div className="p-2 bg-[#16B57F] rounded-full shadow-lg mt-4 w-fit md:w-auto">
                 <div className="flex flex-row gap-4 items-center justify-center text-center">
                     <div
@@ -98,6 +130,8 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            onFocus={() => handleFieldFocus("Email")}
+                            onBlur={() => handleFieldCompletion("Email", email)}
                             className={`flex-1 bg-transparent text-black placeholder-black px-4 py-2 outline-none !font-circular-med text-sm opacity-50 autofill:bg-transparent autofill:text-black ${inputFormat}`}
                             style={{
                                 opacity: 0.5,
@@ -132,21 +166,33 @@ const Subscribe: React.FC<SubscribeProps> = ({ isHero = false }) => {
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                                handleFieldCompletion("Email - Popup", e.target.value);
+                            }}
+                            onFocus={() => handleFieldFocus("Email - Popup")}
                             className="block w-full p-3 mt-4 border border-gray-300 !font-circular-med rounded-md bg-gray-100 text-gray-700 focus:ring-2 focus:ring-green-500 outline-none"
                         />
                         <input
                             type="text"
                             placeholder="First Name"
                             value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
+                            onChange={(e) => {
+                                setFirstName(e.target.value);
+                                handleFieldCompletion("First Name - Popup", e.target.value);
+                            }}
+                            onFocus={() => handleFieldFocus("First Name - Popup")}
                             className="block w-full p-3 mt-2 border border-gray-300 !font-circular-med rounded-md focus:ring-2 focus:ring-green-500 outline-none"
                         />
                         <input
                             type="text"
                             placeholder="Last Name"
                             value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
+                            onChange={(e) => {
+                                setLastName(e.target.value);
+                                handleFieldCompletion("Last Name - Popup", e.target.value);
+                            }}
+                            onFocus={() => handleFieldFocus("Last Name - Popup")}
                             className="block w-full p-3 mt-2 border border-gray-300 !font-circular-med rounded-md focus:ring-2 focus:ring-green-500 outline-none"
                         />
 

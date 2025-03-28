@@ -4,6 +4,17 @@ import Logo from "@/components/Logo";
 import { Linkedin, Instagram } from "lucide-react";
 import { COMINGSOON, FAQS } from "@/components/ConstantLinks";
 import Link from "next/link";
+import { event } from "@/lib/gtag";
+
+
+const trackFooterLinkClick = (linkName: string, category: string) => {    
+    event({
+        action: "click",
+        category: category,
+        label: linkName,
+        value: 1,
+    });
+};
 
 interface FooterProps { full?: boolean; };
 
@@ -36,19 +47,19 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <div className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Quick Links</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">About</Link></li>
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Services</Link></li>
-                                    <li><Link href={FAQS} className="hover:text-gray-900 !font-circular-med">FAQs</Link></li>
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Contact</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("About", "Footer Quick Links")}>About</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Services", "Footer Quick Links")}>Services</Link></li>
+                                    <li><Link href={FAQS} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("FAQs", "Footer Quick Links")}>FAQs</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Contact", "Footer Quick Links")}>Contact</Link></li>
                                 </ul>
                             </div>
-                            
+
                             {/* Legal Links */}
                             <div className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Legal</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Privacy Policy</Link></li>
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med">Terms and Conditions</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Privacy Policy", "Footer Legal Links")}>Privacy Policy</Link></li>
+                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Terms and Conditions", "Footer Legal Links")}>Terms and Conditions</Link></li>
                                 </ul>
                             </div>
 
@@ -62,6 +73,7 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                                         rel="noopener noreferrer"
                                         aria-label="LinkedIn"
                                         className="text-gray-500 hover:text-gray-900 !font-circular-med"
+                                        onClick={() => trackFooterLinkClick("LinkedIn", "Footer Social Links")}
                                     >
                                         <Linkedin size={24} />
                                     </a>
@@ -72,6 +84,7 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                                         rel="noopener noreferrer"
                                         aria-label="Instagram"
                                         className="text-gray-500 hover:text-gray-900 !font-circular-med"
+                                        onClick={() => trackFooterLinkClick("Instagram", "Footer Social Links")}
                                     >
                                         <Instagram size={24} />
                                     </a>

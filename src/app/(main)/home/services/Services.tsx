@@ -21,7 +21,7 @@ const Services = () => {
                     <SubText>banking, SIM cards, travel, and more. All in one</SubText>
                     <SubText>place. Make your transition effortless and focus</SubText>
                     <SubText>on your journey, stress-free!</SubText>
-                    <CTAButton className="mt-5 bg-c-green-100 hover:bg-c-green-0" href={COMINGSOON}>View All Services</CTAButton>
+                    <CTAButton className="mt-5 bg-c-green-100 hover:bg-c-green-0" category="Services" href={COMINGSOON}>View All Services</CTAButton>
                 </div>
             </div>
         </div>

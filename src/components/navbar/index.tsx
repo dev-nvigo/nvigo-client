@@ -8,6 +8,17 @@ import { Button } from "@/components/ui/button";
 // import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { COMINGSOON } from "@/components/ConstantLinks";
 import Link from "next/link";
+import { event } from "@/lib/gtag";
+
+
+const trackNavbarLinkClick = (linkName: string) => {
+    event({
+        action: "click",
+        category: "Navbar Link",
+        label: linkName,
+        value: 1,
+    });
+};
 
 const Navbar = () => {
     // const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -21,16 +32,16 @@ const Navbar = () => {
                 <div className="flex flex-row">
                     <div className="lg:flex items-center gap-8">
                         <div className="hidden lg:flex">
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("Services")}>
                                 <Link href={COMINGSOON} className="!font-circular-book">Services</Link>
                             </Button>
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("Forums")}>
                                 <Link href={COMINGSOON} className="!font-circular-book">Forums</Link>
                             </Button>
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("GoTools")}>
                                 <Link href={COMINGSOON} className="!font-circular-book">GoTools</Link>
                             </Button>
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("Blogs")}>
                                 <Link href={COMINGSOON} className="!font-circular-book">Blogs</Link>
                             </Button>
                         </div>
@@ -57,6 +68,7 @@ const Navbar = () => {
                 <Button
                     variant="default"
                     className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
+                    onClick={() => trackNavbarLinkClick("Join NviGo")}
                 >
                     <Link href={COMINGSOON} className="!font-circular font-bold">Join NviGo</Link>
                 </Button>

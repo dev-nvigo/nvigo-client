@@ -75,7 +75,7 @@ const FAQs: React.FC<FAQsProps> = ({ isFull = false }) => {
                 ))}
         </div>
 
-            { !isFull && <CTAButton className="mt-7 bg-[#3e965d] hover:bg-[#357d4f] self-center" href={FAQS}>Know More</CTAButton> }
+            { !isFull && <CTAButton className="mt-7 bg-[#3e965d] hover:bg-[#357d4f] self-center" category="FAQs" href={FAQS}>Know More</CTAButton> }
         </section >
     );
 }
