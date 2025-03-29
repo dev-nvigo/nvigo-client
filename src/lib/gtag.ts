@@ -1,19 +1,20 @@
 declare global {
     interface Window {
-      gtag: (...args: any[]) => void;
+        gtag: (...args: unknown[]) => void;
     }
-  }
-  
-const GA_TRACKING_ID = process.env.GA_TRACKING_ID!;
+}
 
 // Track pageviews
 export const pageview = (url: string) => {
-    console.log('[GA Pageview Triggered]', url); // ✅ this should log
-    window.gtag('config', GA_TRACKING_ID, {
-      page_path: url,
+    console.log("Logged", url);
+
+    if (typeof window === 'undefined' || !window.gtag) return;
+    console.log("Registered");
+
+    window.gtag('event', 'page_view', {
+        page_path: url,
     });
-  };
-  
+};
 
 // Track specific events
 export const event = ({ action, category, label, value }: {

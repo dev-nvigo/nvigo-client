@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import * as gtag from '@/lib/gtag';
+import { pageview } from '@/lib/gtag';
 
 export default function Analytics() {
     const pathname = usePathname();
@@ -10,7 +10,9 @@ export default function Analytics() {
 
     useEffect(() => {
         const url = pathname + (searchParams.toString() ? `?${searchParams}` : '');
-        gtag.pageview(url);
+        console.log("In Analytics:", url);
+        
+        pageview(url);
     }, [pathname, searchParams]);
 
     return null;

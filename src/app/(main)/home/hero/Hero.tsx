@@ -21,7 +21,7 @@ const Hero = () => {
                     <SubText>Manage everything-loans, housing, SIM cards,</SubText>
                     <SubText>banking, jobs, and more-all in one place.</SubText>
                     <SubText>NviGo makes your transition effortless.</SubText>
-                    {/* <CTAButton className="mt-5 bg-c-blue-200 hover:bg-c-blue-200-h" href={COMINGSOON}>Explore Services</CTAButton> */}
+                    {/* <CTAButton className="mt-5 bg-c-blue-200 hover:bg-c-blue-200-h" category="Services" href={COMINGSOON}>Explore Services</CTAButton> */}
 
                     <Subscribe isHero={true} />
                 </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Link from "next/link";
+import { event } from "@/lib/gtag";
 
 
 interface CardProps {
@@ -10,6 +11,7 @@ interface CardProps {
     excerpt?: string;
     slug?: string;
     image?: string;
+    slug?: string;
     service?: {
         name: string;
         color: string;
@@ -24,19 +26,29 @@ interface CardProps {
 interface CardsProps {
     cards: CardProps[];
     basePath: string;
+    category: string;
     className?: string;
     cardClassName?: string;
 }
 
-const Cards: React.FC<CardsProps> = ({ cards, basePath, className = "", cardClassName = "" }) => {
+const trackCardClick = (cardTitle: string, category: string) => {
+    event({
+        action: "click",
+        category: category,
+        label: cardTitle,
+        value: 1,
+    });
+};
+
+const Cards: React.FC<CardsProps> = ({ cards, basePath, category, className = "", cardClassName = "" }) => {
     return (
         <div className={`${className}`}>
-            {cards.map((card, index) => {
-                return (
+            {cards.map((card, index) => (
                 <Link
                     key={index}
                     href={`${basePath}/${card.slug}`}
                     className={`cursor-pointer rounded-xl overflow-hidden shadow-md relative flex flex-col flex-grow border-black border-[0.5px] transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:bg-opacity-90 ${cardClassName}`}
+                    onClick={() => trackCardClick(card.title, category)}
                 >
                     <div className="relative w-full aspect-[16/9]">
                         <Image
@@ -101,7 +113,7 @@ const Cards: React.FC<CardsProps> = ({ cards, basePath, className = "", cardClas
                         </div>}
                     </div>
                 </Link>
-            )})}
+            ))}
         </div>
     );
 };
