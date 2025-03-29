@@ -1,7 +1,7 @@
-# 🌍 Nvigo Frontend
+# 🌍 NviGo Frontend
 
 ## 🚀 Overview  
-Nvigo is a platform simplifying international transitions by offering services like housing, SIM cards, banking, and jobs. This repository contains the **Next.js** frontend, optimized for SEO, performance, and accessibility.
+NviGo is a platform simplifying international transitions by offering services like housing, SIM cards, banking, and jobs. This repository contains the **Next.js** frontend, optimized for SEO, performance, and accessibility.
 
 ## 🏗️ Tech Stack  
 - **Framework**: [Next.js (App Router)](https://nextjs.org/docs) – Server-side rendering, SEO-optimized  
