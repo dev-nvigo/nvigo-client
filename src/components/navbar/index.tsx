@@ -5,7 +5,7 @@ import Logo from "../Logo";
 import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { BLOGS, COMINGSOON } from "../ConstantLinks";
+import { BLOGS, COMINGSOON, LOGIN, SIGNUP } from "../ConstantLinks";
 import TrackerLink from "../TrackerLink";
 import { DialogTitle } from "../ui/dialog";
 
@@ -39,10 +39,16 @@ const Navbar = () => {
                 </div>
                 <div className="flex gap-2">
                     <Button
+                        variant="ghost"
+                        className="text-base !font-circular-book text-[#232334] hover:bg-[#fe6b64] hover:text-white"
+                    >
+                        <TrackerLink action="click" category="Navbar" label="Login" href={LOGIN} className="!font-circular font-bold">Log In</TrackerLink>
+                    </Button>
+                    <Button
                         variant="default"
                         className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
                     >
-                        <TrackerLink action="click" category="Navbar" label="Join" href={COMINGSOON} className="!font-circular font-bold">Join NviGo</TrackerLink>
+                        <TrackerLink action="click" category="Navbar" label="SignUp" href={SIGNUP} className="!font-circular font-bold">Sign Up</TrackerLink>
                     </Button>
                     <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
                         <SheetTrigger asChild className="lg:hidden">

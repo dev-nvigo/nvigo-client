@@ -4,8 +4,8 @@ export const TEMPLATE = "/template"
 export const TESTING = "/testing"
 
 //Login
-export const LOGIN = "/login"
-export const SIGNUP = "/signup"
+export const LOGIN = "/auth?view=login"
+export const SIGNUP = "/auth?view=signup"
 export const FORGOT = "/forgotpassword"
 export const DASHBORD = "/dashboard"
 export const ANALYTICS = "/analytics"
