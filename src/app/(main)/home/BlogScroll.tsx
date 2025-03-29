@@ -7,7 +7,7 @@ import { fetchRecentBlogs } from '@/lib/blogService';
 import { notFound } from "next/navigation";
 
 
-export default async function BlogScroll () {
+export default async function BlogScroll() {
     const { data: recent_blogs } = await fetchRecentBlogs(9);
     if (!recent_blogs) return notFound();
 
@@ -18,9 +18,15 @@ export default async function BlogScroll () {
                     <HeaderTwo className="mt-3 text-c-teal-0">Fresh News</HeaderTwo>
                     <SubText>Hot off the press</SubText>
                 </h2>
-                <CTAButton href={BLOGS} className="mt-5 bg-c-teal-0 hover:bg-c-teal-0-h">View All</CTAButton>
+                <CTAButton href={BLOGS} label="Blogs" className="mt-5 bg-c-teal-0 hover:bg-c-teal-0-h">View All</CTAButton>
             </div>
-            <Cards cards={recent_blogs} basePath={BLOGS} className="overflow-x-auto whitespace-nowrap px-4 py-2 flex gap-6" cardClassName="w-[min(80vw,20rem)] flex-shrink-0" />
+            <Cards
+                cards={recent_blogs}
+                category="FeaturedBlogs"
+                basePath={BLOGS}
+                className="overflow-x-auto whitespace-nowrap px-4 py-2 flex gap-6"
+                cardClassName="w-[min(80vw,20rem)] flex-shrink-0"
+            />
         </section>
     );
 };

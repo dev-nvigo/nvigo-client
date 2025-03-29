@@ -1,23 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import Logo from "@/components/Logo";
-import { Button } from "@/components/ui/button";
+import Logo from "../Logo";
+import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { BLOGS, COMINGSOON } from "@/components/ConstantLinks";
-import Link from "next/link";
-import { DialogTitle } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { BLOGS, COMINGSOON } from "../ConstantLinks";
+import TrackerLink from "../TrackerLink";
+import { DialogTitle } from "../ui/dialog";
 
-
-const trackNavbarLinkClick = (linkName: string) => {
-    event({
-        action: "click",
-        category: "Navbar Link",
-        label: linkName,
-        value: 1,
-    });
-};
 
 const Navbar = () => {
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -31,17 +22,17 @@ const Navbar = () => {
                 <div className="flex flex-row">
                     <div className="lg:flex items-center gap-8">
                         <div className="hidden lg:flex">
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("Services")}>
-                                <Link href={COMINGSOON} className="!font-circular-book">Services</Link>
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <TrackerLink action="click" category="Navbar" label="Services" href={COMINGSOON} className="!font-circular-book">Services</TrackerLink>
                             </Button>
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("Forums")}>
-                                <Link href={COMINGSOON} className="!font-circular-book">Forums</Link>
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <TrackerLink action="click" category="Navbar" label="Forums" href={COMINGSOON} className="!font-circular-book">Forums</TrackerLink>
                             </Button>
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("GoTools")}>
-                                <Link href={COMINGSOON} className="!font-circular-book">GoTools</Link>
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <TrackerLink action="click" category="Navbar" label="GoTools" href={COMINGSOON} className="!font-circular-book">GoTools</TrackerLink>
                             </Button>
-                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]" onClick={() => trackNavbarLinkClick("Blogs")}>
-                                <Link href={COMINGSOON} className="!font-circular-book">Blogs</Link>
+                            <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
+                                <TrackerLink action="click" category="Navbar" label="Blogs" href={BLOGS} className="!font-circular-book">Blogs</TrackerLink>
                             </Button>
                         </div>
                     </div>
@@ -50,9 +41,8 @@ const Navbar = () => {
                     <Button
                         variant="default"
                         className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
-                        onClick={() => trackNavbarLinkClick("Join NviGo")}
                     >
-                        <Link href={COMINGSOON} className="!font-circular font-bold">Join NviGo</Link>
+                        <TrackerLink action="click" category="Navbar" label="Join" href={COMINGSOON} className="!font-circular font-bold">Join NviGo</TrackerLink>
                     </Button>
                     <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
                         <SheetTrigger asChild className="lg:hidden">
@@ -65,19 +55,19 @@ const Navbar = () => {
                             <hr className="border-t border-gray-300 mb-10" />
                             <div className="flex flex-col gap-6 mt-8 items-center">
                                 <Button className="!font-circular-book text-2xl" variant="ghost" onClick={() => setOpenMobileMenu(false)}>
-                                    <Link href={COMINGSOON}>Services</Link>
+                                    <TrackerLink action="click" category="Navbar" label="" href={COMINGSOON}>Services</TrackerLink>
                                 </Button>
                                 <hr className="border-t w-[75%] border-gray-300" />
                                 <Button className="!font-circular-book text-2xl" variant="ghost" onClick={() => setOpenMobileMenu(false)}>
-                                    <Link href={COMINGSOON}>Forums</Link>
+                                    <TrackerLink action="click" category="Navbar" label="" href={COMINGSOON}>Forums</TrackerLink>
                                 </Button>
                                 <hr className="border-t w-[75%] border-gray-300" />
                                 <Button className="!font-circular-book text-2xl" variant="ghost" onClick={() => setOpenMobileMenu(false)}>
-                                    <Link href={COMINGSOON}>GoTools</Link>
+                                    <TrackerLink action="click" category="Navbar" label="" href={COMINGSOON}>GoTools</TrackerLink>
                                 </Button>
                                 <hr className="border-t w-[75%] border-gray-300" />
                                 <Button className="!font-circular-book text-2xl" variant="ghost" onClick={() => setOpenMobileMenu(false)}>
-                                    <Link href={BLOGS}>Blogs</Link>
+                                    <TrackerLink action="click" category="Navbar" label="" href={BLOGS}>Blogs</TrackerLink>
                                 </Button>
                             </div>
                         </SheetContent>

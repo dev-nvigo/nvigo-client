@@ -2,7 +2,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { BlogPost } from "@/lib/blogService";
 import { formatDate } from '@/utils/formatDate';
-import Link from "next/link";
+import TrackerLink from "@/components/TrackerLink";
 
 
 interface HeroBlogCardProps {
@@ -12,7 +12,8 @@ interface HeroBlogCardProps {
 
 const HeroBlogCard: React.FC<HeroBlogCardProps> = ({ blog, size = "large" }) => {
     return (
-        <Link
+        <TrackerLink
+            action="card-click" category="Blogs" label={blog.slug}
             className={cn(
                 "relative block cursor-pointer transition-transform hover:scale-[1.02] rounded-lg overflow-hidden",
                 size === "large" ? "w-full aspect-[4/3]" : "w-full aspect-[3/5] md:aspect-[4/3]"
@@ -50,7 +51,7 @@ const HeroBlogCard: React.FC<HeroBlogCardProps> = ({ blog, size = "large" }) => 
                     {blog.author.name} - {formatDate(blog.date)}
                 </p>
             </div>
-        </Link>
+        </TrackerLink>
     );
 };
 

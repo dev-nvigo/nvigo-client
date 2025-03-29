@@ -1,18 +1,8 @@
 import Logo from "@/components/Logo";
 import { Linkedin, Instagram } from "lucide-react";
 import { COMINGSOON, FAQS } from "@/components/ConstantLinks";
-import Link from "next/link";
-import { event } from "@/lib/gtag";
+import TrackerLink from "../TrackerLink";
 
-
-const trackFooterLinkClick = (linkName: string, category: string) => {    
-    event({
-        action: "click",
-        category: category,
-        label: linkName,
-        value: 1,
-    });
-};
 
 interface FooterProps { full?: boolean; };
 
@@ -45,10 +35,10 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <nav aria-label="Footer Quick Links" className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Quick Links</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("About", "Footer Quick Links")}>About</Link></li>
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Services", "Footer Quick Links")}>Services</Link></li>
-                                    <li><Link href={FAQS} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("FAQs", "Footer Quick Links")}>FAQs</Link></li>
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Contact", "Footer Quick Links")}>Contact</Link></li>
+                                    <li><TrackerLink href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" action="click" label="About" category="Footer Quick Links">About</TrackerLink></li>
+                                    <li><TrackerLink href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" action="click" label="Services" category="Footer Quick Links">Services</TrackerLink></li>
+                                    <li><TrackerLink href={FAQS} className="hover:text-gray-900 !font-circular-med" action="click" label="FAQs" category="Footer Quick Links">FAQs</TrackerLink></li>
+                                    <li><TrackerLink href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" action="click" label="Contact" category="Footer Quick Links">Contact</TrackerLink></li>
                                 </ul>
                             </nav>
                             
@@ -56,8 +46,8 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <nav aria-label="Footer Legal Links" className="hidden md:block space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold text-lg">Legal</h3>
                                 <ul className="text-gray-500 space-y-2">
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Privacy Policy", "Footer Legal Links")}>Privacy Policy</Link></li>
-                                    <li><Link href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" onClick={() => trackFooterLinkClick("Terms and Conditions", "Footer Legal Links")}>Terms and Conditions</Link></li>
+                                    <li><TrackerLink href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" action="click" label="Privacy Policy" category="Footer Legal Links">Privacy Policy</TrackerLink></li>
+                                    <li><TrackerLink href={COMINGSOON} className="hover:text-gray-900 !font-circular-med" action="click" label="Terms and Conditions" category="Footer Legal Links">Terms and Conditions</TrackerLink></li>
                                 </ul>
                             </nav>
 
@@ -65,27 +55,27 @@ const Footer: React.FC<FooterProps> = ({ full = true }) => {
                             <div className="space-y-3">
                                 <h3 className="text-gray-900 !font-circular font-bold md:text-lg">Reach us out</h3>
                                 <div className="flex justify-center md:justify-start space-x-4">
-                                    <a
+                                    <TrackerLink
                                         href="https://www.linkedin.com/company/nvigoio/"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="LinkedIn"
                                         className="text-gray-500 hover:text-gray-900 !font-circular-med"
-                                        onClick={() => trackFooterLinkClick("LinkedIn", "Footer Social Links")}
+                                        action="click" label="LinkedIn" category="Footer Social Links"
                                     >
                                         <Linkedin size={24} />
-                                    </a>
+                                    </TrackerLink>
 
-                                    <a
+                                    <TrackerLink
                                         href="https://www.instagram.com/nvigoio?igsh=MWNhcTluaGRtenFzZw=="
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="Instagram"
                                         className="text-gray-500 hover:text-gray-900 !font-circular-med"
-                                        onClick={() => trackFooterLinkClick("Instagram", "Footer Social Links")}
+                                        action="click" label="Instagram" category="Footer Social Links"
                                     >
                                         <Instagram size={24} />
-                                    </a>
+                                    </TrackerLink>
                                 </div>
 
                             </div>

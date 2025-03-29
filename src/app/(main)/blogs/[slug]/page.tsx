@@ -114,7 +114,7 @@ const BlogPostPage = async ({ params }: { params: Promise<{ slug: string }> }) =
                 <h2 className="text-4xl !font-circular font-bold text-c-white-800 mb-6">
                     What To Read Next
                 </h2>
-                <Cards cards={recent_blogs} basePath={BLOGS} className="overflow-x-auto whitespace-nowrap px-4 py-2 flex gap-6" cardClassName="w-[min(80vw,20rem)] flex-shrink-0" />
+                <Cards cards={recent_blogs} category="RelatedBlogs" basePath={BLOGS} className="overflow-x-auto whitespace-nowrap px-4 py-2 flex gap-6" cardClassName="w-[min(80vw,20rem)] flex-shrink-0" />
             </div>
             {/* Newsletter Section */}
             <div className="max-w-6xl w-full mt-16">

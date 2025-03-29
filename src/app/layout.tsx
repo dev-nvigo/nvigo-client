@@ -1,7 +1,7 @@
 import ReduxProvider from "./providers/Provider";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
-import Analytics from "@/components/Analytics"; // ✅ import here
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata = {
@@ -27,9 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${GA_TRACKING_ID}', {
-                page_path: window.location.pathname,
-              });
+              gtag('config', '${GA_TRACKING_ID}', { send_page_view: false });
             `,
                     }}
                 />

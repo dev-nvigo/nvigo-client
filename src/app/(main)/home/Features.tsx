@@ -15,12 +15,12 @@ const Features = () => {
                 <HeaderTwo className="mt-3 text-c-red-0">Matter!</HeaderTwo>
             </h2>
             <SubText>Everything international students need, all in one place.</SubText>
-            <CTAButton className="mt-5 bg-c-red-0 hover:bg-c-red-0-h" category="Join" href={COMINGSOON}>Join NviGo</CTAButton>
+            <CTAButton className="mt-5 bg-c-red-0 hover:bg-c-red-0-h" label="Join" href={COMINGSOON}>Join NviGo</CTAButton>
 
             <Cards
                 basePath=""
                 cards={featureData}
-                category="Home Cards"
+                category="Features"
                 className="flex flex-wrap md:flex-nowrap justify-center gap-10 mx-auto !text-left w-[80%] mt-10"
                 cardClassName="w-[min(90vw,24rem)]"
             />
