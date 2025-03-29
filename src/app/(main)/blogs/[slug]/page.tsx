@@ -3,7 +3,7 @@ import Cards from "@/components/ui/cards";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import supabase from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { notFound } from "next/navigation";
 import { fetchBlogBySlug, fetchRecentBlogs } from "@/lib/blogService";
 import { formatDate } from '@/utils/formatDate';

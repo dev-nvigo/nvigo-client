@@ -1,7 +1,8 @@
-import ReduxProvider from "./providers/Provider";
+import { Providers } from "./provider";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 import Analytics from "@/components/Analytics";
+import { SessionSyncer } from "@/components/SessionSyncer";
 import "./globals.css";
 
 export const metadata = {
@@ -33,11 +34,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
             <body>
-                <ReduxProvider>
+                <Providers>
                     <Analytics />
+                    <SessionSyncer />
                     <Toaster position="bottom-center" gutter={56} />
                     {children}
-                </ReduxProvider>
+                </Providers>
             </body>
         </html>
     );
