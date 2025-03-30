@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo, useRef, useEffect } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { Button } from "@/components/ui/button";
 import {
     FormField,
@@ -8,7 +8,6 @@ import {
     FormLabel,
     FormControl,
     FormMessage,
-    FormDescription,
 } from '@/components/ui/form'
 import {
     Command,
@@ -33,24 +32,24 @@ type Suggestion = {
     fullAddress: string
     city: string
     state: string
-    postalCode: string
+    postal_code: string
 }
 
 type AddressInputProps = {
     countryField: string
-    addressLine1Field: string
+    address_line1Field: string
     cityField: string
     stateField: string
-    postalCodeField: string
+    postal_codeField: string
     disabled: boolean
 }
 
 export const AddressInput: React.FC<AddressInputProps> = ({
     countryField,
-    addressLine1Field,
+    address_line1Field,
     cityField,
     stateField,
-    postalCodeField,
+    postal_codeField,
     disabled
 }) => {
     const { control, setValue, watch } = useFormContext()
@@ -78,7 +77,7 @@ export const AddressInput: React.FC<AddressInputProps> = ({
                 if (query.length < 2) return
                 fetchAddressSuggestions(query, country)
             }, 300),
-        [selectedCountry]
+        []
     )
 
     useEffect(() => {
@@ -92,94 +91,88 @@ export const AddressInput: React.FC<AddressInputProps> = ({
             {/* Address Line 1 */}
             <FormField
                 control={control}
-                name={addressLine1Field}
+                name={address_line1Field}
                 render={({ field }) => (
-                    <FormField
-                        control={control}
-                        name={addressLine1Field}
-                        render={({ field }) => (
-                            <FormItem className={cn("flex flex-col", disabled ? "pointer-events-none" : "")}>
-                                <FormLabel>Address</FormLabel>
+                    <FormItem className={cn("flex flex-col", disabled ? "pointer-events-none" : "")}>
+                        <FormLabel>Address</FormLabel>
 
-                                <Popover open={isAddressPopoverOpen} onOpenChange={setIsAddressPopoverOpen}>
-                                    <PopoverTrigger asChild>
-                                        <FormControl>
-                                            <Button
-                                                {...(disabled && { disabled: true })}
-                                                variant="outline"
-                                                role="combobox"
-                                                className={cn(
-                                                    "w-full justify-between text-left",
-                                                    !field.value && "text-muted-foreground"
-                                                )}
-                                            >
-                                                {field.value || "Start typing your address..."}
-                                                <ChevronsUpDown className="ml-auto h-4 w-4 opacity-50" />
-                                            </Button>
-                                        </FormControl>
-                                    </PopoverTrigger>
+                        <Popover open={isAddressPopoverOpen} onOpenChange={setIsAddressPopoverOpen}>
+                            <PopoverTrigger asChild>
+                                <FormControl>
+                                    <Button
+                                        {...(disabled && { disabled: true })}
+                                        variant="outline"
+                                        role="combobox"
+                                        className={cn(
+                                            "w-full justify-between text-left",
+                                            !field.value && "text-muted-foreground"
+                                        )}
+                                    >
+                                        {field.value || "Start typing your address..."}
+                                        <ChevronsUpDown className="ml-auto h-4 w-4 opacity-50" />
+                                    </Button>
+                                </FormControl>
+                            </PopoverTrigger>
 
-                                    <PopoverContent className="w-full p-0">
-                                        <Command>
-                                            <CommandInput
-                                                placeholder="Search address..."
-                                                className="h-9"
-                                                value={typedAddress}
-                                                onValueChange={(val) => {
-                                                    setTypedAddress(val)
-                                                    debouncedFetchSuggestions(val, selectedCountry)
-                                                }}
-                                            />
+                            <PopoverContent className="w-full p-0">
+                                <Command>
+                                    <CommandInput
+                                        placeholder="Search address..."
+                                        className="h-9"
+                                        value={typedAddress}
+                                        onValueChange={(val) => {
+                                            setTypedAddress(val)
+                                            debouncedFetchSuggestions(val, selectedCountry)
+                                        }}
+                                    />
 
-                                            <CommandList>
-                                                {addressSuggestions.length > 0 ? (
-                                                    <CommandGroup>
-                                                        {addressSuggestions.map((suggestion, index) => (
-                                                            <CommandItem
-                                                                key={index}
-                                                                value={suggestion.fullAddress}
-                                                                onSelect={() => {
-                                                                    field.onChange(suggestion.fullAddress)
-                                                                    setValue(cityField, suggestion.city)
-                                                                    setValue(stateField, suggestion.state)
-                                                                    setValue(postalCodeField, suggestion.postalCode)
-                                                                    setIsAddressPopoverOpen(false)
-                                                                }}
-                                                            >
-                                                                {suggestion.fullAddress}
-                                                                <Check
-                                                                    className={cn(
-                                                                        "ml-auto h-4 w-4",
-                                                                        field.value === suggestion.fullAddress ? "opacity-100" : "opacity-0"
-                                                                    )}
-                                                                />
-                                                            </CommandItem>
-                                                        ))}
-                                                    </CommandGroup>
-                                                ) : typedAddress ? (
-                                                    <CommandGroup>
-                                                        <CommandItem
-                                                            value={typedAddress}
-                                                            onSelect={() => {
-                                                                field.onChange(typedAddress)
-                                                                setIsAddressPopoverOpen(false)
-                                                            }}
-                                                        >
-                                                            Use “{typedAddress}”
-                                                            <Check className="ml-auto h-4 w-4 opacity-100" />
-                                                        </CommandItem>
-                                                    </CommandGroup>
-                                                ) : (
-                                                    <CommandEmpty>No suggestions found.</CommandEmpty>
-                                                )}
-                                            </CommandList>
-                                        </Command>
-                                    </PopoverContent>
-                                </Popover>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                                    <CommandList>
+                                        {addressSuggestions.length > 0 ? (
+                                            <CommandGroup>
+                                                {addressSuggestions.map((suggestion, index) => (
+                                                    <CommandItem
+                                                        key={index}
+                                                        value={suggestion.fullAddress}
+                                                        onSelect={() => {
+                                                            field.onChange(suggestion.fullAddress)
+                                                            setValue(cityField, suggestion.city)
+                                                            setValue(stateField, suggestion.state)
+                                                            setValue(postal_codeField, suggestion.postal_code)
+                                                            setIsAddressPopoverOpen(false)
+                                                        }}
+                                                    >
+                                                        {suggestion.fullAddress}
+                                                        <Check
+                                                            className={cn(
+                                                                "ml-auto h-4 w-4",
+                                                                field.value === suggestion.fullAddress ? "opacity-100" : "opacity-0"
+                                                            )}
+                                                        />
+                                                    </CommandItem>
+                                                ))}
+                                            </CommandGroup>
+                                        ) : typedAddress ? (
+                                            <CommandGroup>
+                                                <CommandItem
+                                                    value={typedAddress}
+                                                    onSelect={() => {
+                                                        field.onChange(typedAddress)
+                                                        setIsAddressPopoverOpen(false)
+                                                    }}
+                                                >
+                                                    Use “{typedAddress}”
+                                                    <Check className="ml-auto h-4 w-4 opacity-100" />
+                                                </CommandItem>
+                                            </CommandGroup>
+                                        ) : (
+                                            <CommandEmpty>No suggestions found.</CommandEmpty>
+                                        )}
+                                    </CommandList>
+                                </Command>
+                            </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                    </FormItem>
                 )}
             />
 
@@ -192,7 +185,7 @@ export const AddressInput: React.FC<AddressInputProps> = ({
                         <FormLabel>City</FormLabel>
                         <FormControl>
                             <Input placeholder="Enter city" {...field}
-                                                {...(disabled && { disabled: true })} />
+                                {...(disabled && { disabled: true })} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -208,7 +201,7 @@ export const AddressInput: React.FC<AddressInputProps> = ({
                         <FormLabel>State</FormLabel>
                         <FormControl>
                             <Input placeholder="Enter state" {...field}
-                                                {...(disabled && { disabled: true })} />
+                                {...(disabled && { disabled: true })} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -218,13 +211,13 @@ export const AddressInput: React.FC<AddressInputProps> = ({
             {/* Postal Code */}
             <FormField
                 control={control}
-                name={postalCodeField}
+                name={postal_codeField}
                 render={({ field }) => (
                     <FormItem>
                         <FormLabel>Postal Code</FormLabel>
                         <FormControl>
                             <Input placeholder="e.g. 12345" {...field}
-                                                {...(disabled && { disabled: true })} />
+                                {...(disabled && { disabled: true })} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>

@@ -30,7 +30,7 @@ export async function GET(req: Request) {
             fullAddress: item.display_name,
             city: item.address.city || item.address.town || item.address.village || "",
             state: item.address.state || "",
-            postalCode: item.address.postcode || "",
+            postal_code: item.address.postcode || "",
         }))
 
         return NextResponse.json({ suggestions })

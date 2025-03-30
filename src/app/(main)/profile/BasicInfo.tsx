@@ -2,9 +2,10 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/storeClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { FaBriefcase } from "react-icons/fa";
-
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -14,33 +15,83 @@ import {
     FormControl,
     FormMessage,
 } from "@/components/ui/form";
+import {
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 // import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { BasicInfoFormData, basicInfoSchema } from "@/utils/validations";
 import { AddressInput } from "@/components/forms/AddressInput";
 import { CountrySelect } from "@/components/forms/CountrySelect";
 import { useWatch } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { updateBasicProfile } from "@/lib/api/user";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/slices/userSlice";
+import { AppDispatch } from "@/redux/storeClient";
 
 
-export function BasicInfoForm() {
+interface BasicInfoFormProps {
+    redirectTo?: string;
+}
+
+const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
+    const router = useRouter();
+    const { user } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch<AppDispatch>();
+
     const form = useForm<BasicInfoFormData>({
         resolver: zodResolver(basicInfoSchema),
         defaultValues: {
-            fullName: "",
-            email: "",
-            countryOfOrigin: "",
-            currentCountry: "",
+            full_name: "",
+            email: user?.email || "",
+            country_of_origin: "",
+            current_country: "",
         },
     });
 
-    const onSubmit = (data: BasicInfoFormData) => {
-        console.log("Profile Data:", data);
-        // Implement profile update logic here (e.g., API call, Redux dispatch)
+    const onSubmit = async (data: BasicInfoFormData) => {
+        console.log(user);
+        console.log("here");
+        
+        if (user) {
+            try {
+                await updateBasicProfile(user.id, {
+                    full_name: data.full_name,
+                    email: data.email,
+                    country_of_origin: data.country_of_origin,
+                    current_country: data.current_country,
+                    address_line1: data.address_line1,
+                    city: data.city,
+                    state: data.state,
+                    postal_code: data.postal_code,
+                    current_status: data.current_status,
+                    profile_completed: true,
+                });
+
+                dispatch(
+                    setUser({
+                        ...user,
+                        full_name: data.full_name,
+                        profile_completed: true,
+                    })
+                );
+                router.push(redirectTo);
+
+                // router.push(`/profile/next?redirectTo=${redirectTo}`);
+            } catch (error) {
+                console.error("Profile update failed:", error);
+            }
+        }
     };
 
-    const currentCountry = useWatch({
+    const current_country = useWatch({
         control: form.control,
-        name: "currentCountry",
+        name: "current_country",
     });
 
     return (
@@ -70,6 +121,7 @@ export function BasicInfoForm() {
                             <FormField
                                 control={form.control}
                                 name="email"
+                                disabled={true}
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Email Address</FormLabel>
@@ -84,7 +136,7 @@ export function BasicInfoForm() {
                             {/* Full Name */}
                             <FormField
                                 control={form.control}
-                                name="fullName"
+                                name="full_name"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Full Name</FormLabel>
@@ -96,20 +148,45 @@ export function BasicInfoForm() {
                                 )}
                             />
 
-                            <CountrySelect name="countryOfOrigin" label="Country of Origin" />
-                            <CountrySelect name="currentCountry" label="Select Current Location" />
+                            <CountrySelect name="country_of_origin" label="Country of Origin" />
+
+                            <FormField
+                                control={form.control}
+                                name="current_status"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Current Status</FormLabel>
+                                        <FormControl>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select Status" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="current_student">Current Student</SelectItem>
+                                                    <SelectItem value="incoming_student">Incoming Student</SelectItem>
+                                                    <SelectItem value="recent_graduate">Recent Graduate</SelectItem>
+                                                    <SelectItem value="working_professional">Working Professional</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <CountrySelect name="current_country" label="Select Current Location" />
                         </div>
                         {/* Vertical Divider */}
                         <div className="w-px bg-gray-300" />
                         {/* Right Side */}
                         <div className="w-[20vw] space-y-6">
                             <AddressInput
-                                disabled={!currentCountry}
-                                countryField="currentCountry"
-                                addressLine1Field="addressLine1"
+                                disabled={!current_country}
+                                countryField="current_country"
+                                address_line1Field="address_line1"
                                 cityField="city"
                                 stateField="state"
-                                postalCodeField="postalCode"
+                                postal_codeField="postal_code"
                             />
                         </div>
                     </div>
@@ -130,3 +207,5 @@ export function BasicInfoForm() {
         </div>
     );
 }
+
+export default BasicInfoForm;

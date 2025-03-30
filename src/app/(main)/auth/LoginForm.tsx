@@ -3,8 +3,6 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -18,12 +16,18 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { signInSchema, SignInFormData } from "@/utils/validations";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch } from "@/redux/storeClient";
 import { setUser } from "@/redux/slices/userSlice";
+import { useRouter } from "next/navigation";
+import { signInWithEmail } from "@/lib/api/user";
 
 
-export default function LoginForm() {
-    // 2. React Hook Form Setup
+interface LoginFormProps {
+    redirectTo?: string;
+}
+
+const LoginForm = ({ redirectTo = "/" }: LoginFormProps) => {
+    const router = useRouter();
     const form = useForm<SignInFormData>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -34,26 +38,26 @@ export default function LoginForm() {
     });
     const dispatch = useDispatch<AppDispatch>();
 
-    // 3. Form Submit Handler
-    const onSubmit = (data: SignInFormData) => {
-        console.log("Sign In Data:", data);
-
-        // Example:
-        // 1) Make an API call to sign the user in
-        // 2) If successful, dispatch an action to Redux or store token in cookies
-        // 3) Redirect user or show success message
+    const onSubmit = async (data: SignInFormData) => {
         try {
-            // 1. Make an API call to your backend to create the user
-            //    For demonstration, let's pretend it returns a token
-            //    const response = await fetch("/api/signup", { method: "POST", body: JSON.stringify(data) });
-            //    const result = await response.json();
+            const user = await signInWithEmail(data.email, data.password);
 
-            // 2. Dispatch to Redux
-            dispatch(setUser({ email: data.email, token: "someAuthTokenFromServer" }));
+            if (!user) {
+                throw new Error("Login succeeded but user is missing.");
+            }
 
-            console.log("Form submitted, user set in Redux store", data);
+            dispatch(
+                setUser({
+                    id: user.id,
+                    email: user.email!,
+                    full_name: user.full_name ?? "",
+                    profile_completed: user.profile_completed ?? false,
+                })
+            );
+
+            router.push(redirectTo);
         } catch (error) {
-            console.error("Sign up failed", error);
+            console.error("Unexpected login error:", error);
         }
     };
 
@@ -116,3 +120,5 @@ export default function LoginForm() {
         </Form>
     );
 }
+
+export default LoginForm;

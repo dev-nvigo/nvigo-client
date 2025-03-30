@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type User = {
     id: string;
     email: string;
-    fullName?: string;
-    profileCompleted?: boolean;
+    full_name?: string;
+    profile_completed?: boolean;
     // Add any additional fields you store from Supabase or profile
 };
 

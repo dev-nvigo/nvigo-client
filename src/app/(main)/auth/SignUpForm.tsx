@@ -21,11 +21,18 @@ import {
 } from "@/utils/validations/passwordUtils";
 import { signUpSchema, SignUpFormData } from "@/utils/validations";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch } from "@/redux/storeClient";
+import { createUserProfile, signUpWithEmail } from "@/lib/api/user";
 import { setUser } from "@/redux/slices/userSlice";
+import { useRouter } from "next/navigation";
 
 
-export default function SignUpForm() {
+interface SignUpFormProps {
+    redirectTo?: string;
+}
+
+const SignUpForm = ({ redirectTo = "/" }: SignUpFormProps) => {
+    const router = useRouter();
     const form = useForm<SignUpFormData>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
@@ -58,28 +65,32 @@ export default function SignUpForm() {
     };
 
     useEffect(() => {
-        console.log("here");
-
         checkPasswordStrength(passwordValue);
         setIsPasswordValid({
             length: isLongEnough(passwordValue),
             number: containsNumberOrSymbol(passwordValue),
             notNameOrEmail: doesNotContainEmailUsername(passwordValue, emailValue),
         });
-    }, [passwordValue]);
+    }, [passwordValue, emailValue]);
 
-    const onSubmit = (data: SignUpFormData) => {
-        console.log("Form submitted", data);
+    const onSubmit = async (data: SignUpFormData) => {
         try {
-            // 1. Make an API call to your backend to create the user
-            //    For demonstration, let's pretend it returns a token
-            //    const response = await fetch("/api/signup", { method: "POST", body: JSON.stringify(data) });
-            //    const result = await response.json();
+            const { user } = await signUpWithEmail(data.email, data.password);
 
-            // 2. Dispatch to Redux
-            dispatch(setUser({ email: data.email, token: "someAuthTokenFromServer" }));
+            if (user) {
+                console.log(user);
+                
+                await createUserProfile(user.id, user.email!);
+                dispatch(
+                    setUser({
+                        id: user.id,
+                        email: user.email!,
+                        profile_completed: false,
+                    })
+                );
 
-            console.log("Form submitted, user set in Redux store", data);
+                router.push(`/profile?redirectTo=${redirectTo}`);
+            }
         } catch (error) {
             console.error("Sign up failed", error);
         }
@@ -178,3 +189,5 @@ export default function SignUpForm() {
         </Form>
     );
 }
+
+export default SignUpForm;

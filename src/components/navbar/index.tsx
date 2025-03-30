@@ -5,7 +5,7 @@ import Logo from "../Logo";
 import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { BLOGS, COMINGSOON, LOGIN, SIGNUP } from "../ConstantLinks";
+import { BLOGS, COMINGSOON, LOGIN, SERVICES, SIGNUP } from "../ConstantLinks";
 import TrackerLink from "../TrackerLink";
 import { DialogTitle } from "../ui/dialog";
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <div className="lg:flex items-center gap-8">
                         <div className="hidden lg:flex">
                             <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
-                                <TrackerLink action="click" category="Navbar" label="Services" href={COMINGSOON} className="!font-circular-book">Services</TrackerLink>
+                                <TrackerLink action="click" category="Navbar" label="Services" href={SERVICES} className="!font-circular-book">Services</TrackerLink>
                             </Button>
                             <Button variant="ghost" className="text-base hover:bg-[#16B57F] text-[#232334]">
                                 <TrackerLink action="click" category="Navbar" label="Forums" href={COMINGSOON} className="!font-circular-book">Forums</TrackerLink>
@@ -42,7 +42,7 @@ const Navbar = () => {
                         variant="ghost"
                         className="text-base !font-circular-book text-[#232334] hover:bg-[#fe6b64] hover:text-white"
                     >
-                        <TrackerLink action="click" category="Navbar" label="Login" href={LOGIN} className="!font-circular font-bold">Log In</TrackerLink>
+                        <TrackerLink action="click" category="Navbar" label="Login" href={LOGIN} className="!font-circular">Log In</TrackerLink>
                     </Button>
                     <Button
                         variant="default"
