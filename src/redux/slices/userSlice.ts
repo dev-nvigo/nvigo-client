@@ -5,6 +5,7 @@ type User = {
     email: string;
     full_name?: string;
     profile_completed?: boolean;
+    current_status?: string;
     // Add any additional fields you store from Supabase or profile
 };
 

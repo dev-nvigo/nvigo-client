@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/storeClient";
@@ -29,7 +29,7 @@ import { AddressInput } from "@/components/forms/AddressInput";
 import { CountrySelect } from "@/components/forms/CountrySelect";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { updateBasicProfile } from "@/lib/api/user";
+import { fetchBasicProfile, updateBasicProfile } from "@/lib/api/user";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slices/userSlice";
 import { AppDispatch } from "@/redux/storeClient";
@@ -54,10 +54,30 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
         },
     });
 
+    useEffect(() => {
+        const prefill = async () => {
+            if (user?.id) {
+                const profile = await fetchBasicProfile(user.id);
+                if (profile) {
+                    form.reset({
+                        full_name: profile.full_name || "",
+                        email: profile.email || "",
+                        country_of_origin: profile.country_of_origin || "",
+                        current_country: profile.current_country || "",
+                        current_status: profile.current_status || "",
+                        address_line1: profile.address_line1 || "",
+                        city: profile.city || "",
+                        state: profile.state || "",
+                        postal_code: profile.postal_code || "",
+                    });
+                }
+            }
+        };
+
+        prefill();
+    }, [user?.id, form]);
+
     const onSubmit = async (data: BasicInfoFormData) => {
-        console.log(user);
-        console.log("here");
-        
         if (user) {
             try {
                 await updateBasicProfile(user.id, {
@@ -78,11 +98,12 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
                         ...user,
                         full_name: data.full_name,
                         profile_completed: true,
+                        current_status: data.current_status
                     })
                 );
-                router.push(redirectTo);
+                // router.push(redirectTo);
 
-                // router.push(`/profile/next?redirectTo=${redirectTo}`);
+                router.push(`/profile/next?redirectTo=${redirectTo}`);
             } catch (error) {
                 console.error("Profile update failed:", error);
             }
@@ -157,7 +178,7 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
                                     <FormItem>
                                         <FormLabel>Current Status</FormLabel>
                                         <FormControl>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <Select onValueChange={field.onChange} value={field.value}>
                                                 <SelectTrigger className="w-full">
                                                     <SelectValue placeholder="Select Status" />
                                                 </SelectTrigger>

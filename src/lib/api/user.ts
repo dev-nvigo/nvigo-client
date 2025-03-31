@@ -3,10 +3,6 @@ import { BasicInfoFormData } from "@/utils/validations";
 
 
 export async function createUserProfile(userId: string, email: string) {
-    console.log("here");
-    
-    console.log(userId, email);
-    
     const { error } = await supabase.from("profiles").insert({
         id: userId,
         email,
@@ -25,8 +21,6 @@ export async function signUpWithEmail(email: string, password: string) {
         email,
         password,
     });
-    console.log(data);
-    
 
     if (error) {
         throw error;
@@ -73,4 +67,31 @@ export async function updateBasicProfile(userId: string, data: Partial<BasicInfo
     if (error) {
         throw error;
     }
+}
+
+export async function fetchBasicProfile(userId: string) {
+    const { data, error } = await supabase
+        .from("profiles")
+        .select(
+            `
+        full_name,
+        email,
+        country_of_origin,
+        current_country,
+        current_status,
+        address_line1,
+        city,
+        state,
+        postal_code
+      `
+        )
+        .eq("id", userId)
+        .single();
+
+    if (error) {
+        console.error("Error fetching profile:", error);
+        return null;
+    }
+
+    return data;
 }
