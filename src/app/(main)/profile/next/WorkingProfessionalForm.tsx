@@ -5,13 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
     workingProfessionalSchema,
     WorkingProfessionalFormData,
-} from "@/utils/validations/workingProfessional";
+} from "@/utils/validations";
 
-import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/storeClient";
-import { fetchBasicProfile } from "@/lib/api/user";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,15 +33,7 @@ export default function WorkingProfessionalForm({
     onSubmit: (data: WorkingProfessionalFormData) => void;
 }) {
     const form = useForm<WorkingProfessionalFormData>({
-        resolver: zodResolver(workingProfessionalSchema),
-        defaultValues: {
-            graduated_university: "",
-            education_level: "bachelors",
-            program_of_study: "",
-            current_employer: "",
-            job_title: "",
-            visa_status: "h1b",
-        },
+        resolver: zodResolver(workingProfessionalSchema)
     });
 
     const visaOptions = [
@@ -58,144 +46,149 @@ export default function WorkingProfessionalForm({
 
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6 max-w-3xl mx-auto mt-10"
-            >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* === LEFT === */}
-                    <div className="space-y-4">
-                        {/* Graduated From */}
-                        <FormField
-                            control={form.control}
-                            name="graduated_university"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Graduated From (optional)</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g. USC" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* Education Level */}
-                        <FormField
-                            control={form.control}
-                            name="education_level"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Highest Level of Education</FormLabel>
-                                    <Select onValueChange={field.onChange} value={field.value}>
+        <div className="space-y-8 p-6">
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6 max-w-3xl mx-auto mt-2"
+                >
+                    <div className="flex flex-col md:flex-row items-stretch gap-8">
+                        {/* === LEFT === */}
+                        <div className="md:w-[20vw] space-y-6">
+                            {/* Graduated From */}
+                            <FormField
+                                control={form.control}
+                                name="us_grad_university"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Graduated From (optional)</FormLabel>
                                         <FormControl>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Select Level" />
-                                            </SelectTrigger>
+                                            <Input placeholder="e.g. USC" {...field} />
                                         </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="bachelors">Bachelor’s</SelectItem>
-                                            <SelectItem value="masters">Master’s</SelectItem>
-                                            <SelectItem value="phd">PhD</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
 
-                        {/* Employer Name */}
-                        <FormField
-                            control={form.control}
-                            name="current_employer"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Current Employer</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g. Amazon" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                            {/* Education Level */}
+                            <FormField
+                                control={form.control}
+                                name="education_level_work"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Highest Level of Education</FormLabel>
+                                        <Select onValueChange={field.onChange} value={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select Level" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="bachelors">Bachelor’s</SelectItem>
+                                                <SelectItem value="masters">Master’s</SelectItem>
+                                                <SelectItem value="phd">PhD</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/* Employer Name */}
+                            <FormField
+                                control={form.control}
+                                name="current_employer_work"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Current Employer</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="e.g. Amazon" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* Vertical Divider */}
+                        <div className="hidden md:block w-px bg-gray-300" />
+
+                        {/* === RIGHT === */}
+                        <div className="md:w-[20vw] space-y-6">
+                            {/* Program of Study */}
+                            <FormField
+                                control={form.control}
+                                name="program_of_study_work"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Program of Study (optional)</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="e.g. Computer Science" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/* Visa Status */}
+                            <FormField
+                                control={form.control}
+                                name="work_visa_status"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Visa Status</FormLabel>
+                                        <Select onValueChange={field.onChange} value={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select Visa" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {visaOptions.map((option) => (
+                                                    <SelectItem key={option} value={option}>
+                                                        {option.toUpperCase()}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/* Job Title */}
+                            <FormField
+                                control={form.control}
+                                name="job_title_work"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Job Title</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="e.g. Software Engineer" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
                     </div>
 
-                    {/* === RIGHT === */}
-                    <div className="space-y-4">
-                        {/* Program of Study */}
-                        <FormField
-                            control={form.control}
-                            name="program_of_study"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Program of Study (optional)</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g. Computer Science" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* Visa Status */}
-                        <FormField
-                            control={form.control}
-                            name="visa_status"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Visa Status</FormLabel>
-                                    <Select onValueChange={field.onChange} value={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Select Visa" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            {visaOptions.map((option) => (
-                                                <SelectItem key={option} value={option}>
-                                                    {option.toUpperCase()}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* Job Title */}
-                        <FormField
-                            control={form.control}
-                            name="job_title"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Job Title</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g. Software Engineer" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                    {/* Buttons */}
+                    <div className="pt-6 flex justify-center gap-6">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => router.push(`/profile/status?redirectTo=${redirectTo}`)}
+                            className="min-w-[8rem]"
+                        >
+                            Back
+                        </Button>
+                        <Button type="submit" className="min-w-[8rem]">
+                            Continue
+                        </Button>
                     </div>
-                </div>
-
-                {/* Buttons */}
-                <div className="pt-6 flex justify-center gap-6">
-                    <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => router.push(`/profile?redirectTo=${redirectTo}`)}
-                        className="min-w-[8rem]"
-                    >
-                        Back
-                    </Button>
-                    <Button type="submit" className="min-w-[8rem]">
-                        Continue
-                    </Button>
-                </div>
-            </form>
-        </Form>
+                </form>
+            </Form>
+        </div>
     );
 }

@@ -1,6 +1,6 @@
 import BlogCard from "./BlogCard";
 import Pagination from "@/components/ui/pagination";
-import { BlogPost } from "@/lib/blogService";
+import { BlogPost } from "@/lib/api/blog";
 
 
 export const dynamic = "force-static";

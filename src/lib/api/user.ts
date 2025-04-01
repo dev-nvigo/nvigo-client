@@ -1,5 +1,12 @@
 import { supabase } from "@/lib/supabaseClient";
 import { BasicInfoFormData } from "@/utils/validations";
+import {
+    StatusFormData,
+    CurrentStudentFormData,
+    IncomingStudentFormData,
+    RecentGraduateFormData,
+    WorkingProfessionalFormData,
+} from "@/utils/validations";
 
 
 export async function createUserProfile(userId: string, email: string) {
@@ -69,6 +76,19 @@ export async function updateBasicProfile(userId: string, data: Partial<BasicInfo
     }
 }
 
+
+export async function updateProfileStatus(userId: string, data: Partial<StatusFormData> & { profile_completed?: boolean }) {
+    const { error } = await supabase
+        .from("profiles")
+        .update(data)
+        .eq("id", userId);
+
+    if (error) {
+        throw error;
+    }
+}
+
+
 export async function fetchBasicProfile(userId: string) {
     const { data, error } = await supabase
         .from("profiles")
@@ -94,4 +114,24 @@ export async function fetchBasicProfile(userId: string) {
     }
 
     return data;
+}
+
+export type ProfileFormData =
+    | CurrentStudentFormData
+    | IncomingStudentFormData
+    | RecentGraduateFormData
+    | WorkingProfessionalFormData;
+
+export async function updateProfile(
+    userId: string,
+    data: ProfileFormData
+): Promise<void> {
+    const { error } = await supabase
+        .from("profiles")
+        .update(data)
+        .eq("id", userId);
+
+    if (error) {
+        throw new Error(error.message);
+    }
 }

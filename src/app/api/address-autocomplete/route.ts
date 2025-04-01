@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { formatAddress } from "@/utils/format"
 
 const LOCATIONIQ_API_KEY = process.env.LOCATIONIQ_API_KEY
 
@@ -31,7 +32,9 @@ export async function GET(req: Request) {
             city: item.address.city || item.address.town || item.address.village || "",
             state: item.address.state || "",
             postal_code: item.address.postcode || "",
+            address_line: formatAddress(item.address),
         }))
+        
 
         return NextResponse.json({ suggestions })
     } catch (err) {

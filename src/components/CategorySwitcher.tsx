@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
-import { BlogCategory } from "@/lib/blogService";
+import { BlogCategory } from "@/lib/api/blog";
 
 
 interface SidebarProps {

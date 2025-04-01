@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import HeroBlogCard from "./HeroBlogCard";
 import { cn } from "@/lib/utils";
-import { BlogPost } from "@/lib/blogService";
+import { BlogPost } from "@/lib/api/blog";
 
 
 export default function Hero ({ featuredBlogs }: { featuredBlogs: BlogPost[] }) {

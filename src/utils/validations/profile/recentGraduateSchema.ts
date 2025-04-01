@@ -7,7 +7,7 @@ export const recentGraduateSchema = z.object({
     employment_status: z.enum(["employed", "searching"]),
     current_employer: z.string().optional(),
     job_title: z.string().optional(),
-    visa_status: z.enum(["opt_ead", "stem_opt"]),
+    visa_status_opt: z.enum(["opt_ead", "stem_opt"]),
 });
 
 export type RecentGraduateFormData = z.infer<typeof recentGraduateSchema>;

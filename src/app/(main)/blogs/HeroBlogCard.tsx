@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { BlogPost } from "@/lib/blogService";
-import { formatDate } from '@/utils/formatDate';
+import { BlogPost } from "@/lib/api/blog";
+import { formatDate } from '@/utils/format';
 import TrackerLink from "@/components/TrackerLink";
 
 

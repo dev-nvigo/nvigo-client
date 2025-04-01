@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselApi } from "@/components/ui/carousel";
-import { BlogPost } from "@/lib/blogService";
+import { BlogPost } from "@/lib/api/blog";
 import HeroBlogCard from "./HeroBlogCard";
 
 

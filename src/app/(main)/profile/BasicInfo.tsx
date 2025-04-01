@@ -15,13 +15,6 @@ import {
     FormControl,
     FormMessage,
 } from "@/components/ui/form";
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectItem,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 // import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { BasicInfoFormData, basicInfoSchema } from "@/utils/validations";
@@ -64,7 +57,6 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
                         email: profile.email || "",
                         country_of_origin: profile.country_of_origin || "",
                         current_country: profile.current_country || "",
-                        current_status: profile.current_status || "",
                         address_line1: profile.address_line1 || "",
                         city: profile.city || "",
                         state: profile.state || "",
@@ -89,7 +81,6 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
                     city: data.city,
                     state: data.state,
                     postal_code: data.postal_code,
-                    current_status: data.current_status,
                     profile_completed: true,
                 });
 
@@ -97,13 +88,10 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
                     setUser({
                         ...user,
                         full_name: data.full_name,
-                        profile_completed: true,
-                        current_status: data.current_status
                     })
                 );
-                // router.push(redirectTo);
 
-                router.push(`/profile/next?redirectTo=${redirectTo}`);
+                router.push(`/profile/status?redirectTo=${redirectTo}`);
             } catch (error) {
                 console.error("Profile update failed:", error);
             }
@@ -116,7 +104,7 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
     });
 
     return (
-        <div className="space-y-8 p-6">
+        <div className="space-y-8 p-6 mt-2">
             {/* Profile Image Section */}
             {/* <div className="flex flex-col items-center space-y-4">
                 <Avatar className="h-20 w-20 border-2 border-primary">
@@ -134,10 +122,10 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
             {/* Profile Form */}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-5xl mx-auto px-4">
-                    <div className="flex items-stretch gap-8">
+                    <div className="flex flex-col md:flex-row items-stretch gap-8">
 
                         {/* Left Side */}
-                        <div className="w-[20vw] space-y-6">
+                        <div className="md:w-[20vw] space-y-6">
                             {/* Email Address */}
                             <FormField
                                 control={form.control}
@@ -171,36 +159,12 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
 
                             <CountrySelect name="country_of_origin" label="Country of Origin" />
 
-                            <FormField
-                                control={form.control}
-                                name="current_status"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Current Status</FormLabel>
-                                        <FormControl>
-                                            <Select onValueChange={field.onChange} value={field.value}>
-                                                <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder="Select Status" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="current_student">Current Student</SelectItem>
-                                                    <SelectItem value="incoming_student">Incoming Student</SelectItem>
-                                                    <SelectItem value="recent_graduate">Recent Graduate</SelectItem>
-                                                    <SelectItem value="working_professional">Working Professional</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
                             <CountrySelect name="current_country" label="Select Current Location" />
                         </div>
                         {/* Vertical Divider */}
-                        <div className="w-px bg-gray-300" />
+                        <div className="hidden md:block w-px bg-gray-300" />
                         {/* Right Side */}
-                        <div className="w-[20vw] space-y-6">
+                        <div className="md:w-[20vw] space-y-6">
                             <AddressInput
                                 disabled={!current_country}
                                 countryField="current_country"
@@ -212,12 +176,13 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
                         </div>
                     </div>
 
+                    
                     {/* Buttons */}
                     <div className="flex justify-center gap-6 pt-8">
-                        <Button type="button" variant="outline" className="min-w-[6rem] text-center">
+                        {/* <Button type="button" variant="outline" className="min-w-[6rem] text-center">
                             Back
-                        </Button>
-                        <Button type="submit" className="min-w-[6rem] text-center">
+                        </Button> */}
+                        <Button type="submit" className="min-w-[8rem] text-center">
                             Continue
                         </Button>
                     </div>

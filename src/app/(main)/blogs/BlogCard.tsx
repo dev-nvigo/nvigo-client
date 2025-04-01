@@ -1,8 +1,8 @@
-import { BlogPost } from "@/lib/blogService";
+import { BlogPost } from "@/lib/api/blog";
 import Image from "next/image";
 import TrackerLink from "@/components/TrackerLink";
 import { BLOGS } from "@/components/ConstantLinks";
-import { formatDate } from '@/utils/formatDate';
+import { formatDate } from '@/utils/format';
 
 interface BlogCardProps {
     blog: BlogPost;

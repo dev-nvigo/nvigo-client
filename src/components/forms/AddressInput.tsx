@@ -28,11 +28,13 @@ import debounce from 'lodash.debounce'
 import { cn } from "@/lib/utils"
 import { useFormContext } from 'react-hook-form'
 
+
 type Suggestion = {
     fullAddress: string
     city: string
     state: string
     postal_code: string
+    address_line: string
 }
 
 type AddressInputProps = {
@@ -134,7 +136,9 @@ export const AddressInput: React.FC<AddressInputProps> = ({
                                                         key={index}
                                                         value={suggestion.fullAddress}
                                                         onSelect={() => {
-                                                            field.onChange(suggestion.fullAddress)
+                                                            console.log(suggestion);
+                                                            
+                                                            field.onChange(suggestion.address_line)
                                                             setValue(cityField, suggestion.city)
                                                             setValue(stateField, suggestion.state)
                                                             setValue(postal_codeField, suggestion.postal_code)
@@ -176,6 +180,22 @@ export const AddressInput: React.FC<AddressInputProps> = ({
                 )}
             />
 
+            {/* Postal Code */}
+            <FormField
+                control={control}
+                name={postal_codeField}
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Postal Code</FormLabel>
+                        <FormControl>
+                            <Input placeholder="e.g. 12345" {...field}
+                                {...(disabled && { disabled: true })} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+
             {/* City */}
             <FormField
                 control={control}
@@ -201,22 +221,6 @@ export const AddressInput: React.FC<AddressInputProps> = ({
                         <FormLabel>State</FormLabel>
                         <FormControl>
                             <Input placeholder="Enter state" {...field}
-                                {...(disabled && { disabled: true })} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-
-            {/* Postal Code */}
-            <FormField
-                control={control}
-                name={postal_codeField}
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Postal Code</FormLabel>
-                        <FormControl>
-                            <Input placeholder="e.g. 12345" {...field}
                                 {...(disabled && { disabled: true })} />
                         </FormControl>
                         <FormMessage />

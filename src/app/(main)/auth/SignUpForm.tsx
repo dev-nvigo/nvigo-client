@@ -18,7 +18,7 @@ import {
     isLongEnough,
     containsNumberOrSymbol,
     doesNotContainEmailUsername,
-} from "@/utils/validations/passwordUtils";
+} from "@/utils/validations/profile/passwordUtils";
 import { signUpSchema, SignUpFormData } from "@/utils/validations";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/storeClient";

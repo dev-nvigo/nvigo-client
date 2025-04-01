@@ -3,7 +3,7 @@ import SubText from "@/components/ui/sub-text";
 import CTAButton from "@/components/ui/ctabutton";
 import Cards from "@/components/ui/cards";
 import { BLOGS } from "@/components/ConstantLinks";
-import { fetchRecentBlogs } from '@/lib/blogService';
+import { fetchRecentBlogs } from '@/lib/api/blog';
 import { notFound } from "next/navigation";
 
 

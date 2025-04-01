@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from "./Hero";
 import BlogList from "./BlogList";
 import CategorySwitcher from "@/components/CategorySwitcher";
-import { getBlogCategories, fetchBlogs, fetchRecentBlogs } from '@/lib/blogService';
+import { getBlogCategories, fetchBlogs, fetchRecentBlogs } from '@/lib/api/blog';
 import BlogCarousel from './BlogCarousel';
 import { notFound } from "next/navigation";
 

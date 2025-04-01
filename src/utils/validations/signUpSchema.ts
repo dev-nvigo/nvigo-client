@@ -4,7 +4,7 @@ import {
     isLongEnough,
     containsNumberOrSymbol,
     doesNotContainEmailUsername,
-} from "./passwordUtils";
+} from "./profile/passwordUtils";
 
 // Sign Up Schema
 export const signUpSchema = z

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
     recentGraduateSchema,
     RecentGraduateFormData,
-} from "@/utils/validations/recentGraduate";
+} from "@/utils/validations";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -23,11 +23,8 @@ import {
     SelectItem,
     SelectValue,
 } from "@/components/ui/select";
-import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/storeClient";
-import { fetchBasicProfile } from "@/lib/api/user";
+
 
 export default function RecentGraduateForm({
     onSubmit,
@@ -35,16 +32,7 @@ export default function RecentGraduateForm({
     onSubmit: (data: RecentGraduateFormData) => void;
 }) {
     const form = useForm<RecentGraduateFormData>({
-        resolver: zodResolver(recentGraduateSchema),
-        defaultValues: {
-            graduated_university: "",
-            education_level: "bachelors",
-            graduation_year: "",
-            employment_status: "searching",
-            current_employer: "",
-            job_title: "",
-            visa_status: "opt_ead",
-        },
+        resolver: zodResolver(recentGraduateSchema)
     });
 
     const currentYear = new Date().getFullYear();
@@ -55,52 +43,112 @@ export default function RecentGraduateForm({
     const employmentStatus = form.watch("employment_status");
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6 max-w-3xl mx-auto mt-10"
-            >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* === LEFT === */}
-                    <div className="space-y-4">
-                        {/* Graduated University */}
-                        <FormField
-                            control={form.control}
-                            name="graduated_university"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Graduated From</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g. NYU" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* Education Level */}
-                        <FormField
-                            control={form.control}
-                            name="education_level"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Highest Level of Education</FormLabel>
-                                    <Select onValueChange={field.onChange} value={field.value}>
+        <div className="space-y-8 p-6">
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-col items-center not-visited:space-y-6 max-w-3xl mx-auto mt-2"
+                >
+                    <div className="flex flex-col md:flex-row items-stretch gap-8">
+                        {/* === LEFT === */}
+                        <div className="md:w-[20vw] space-y-6">
+                            {/* Graduated University */}
+                            <FormField
+                                control={form.control}
+                                name="graduated_university"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Graduated From</FormLabel>
                                         <FormControl>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Select Level" />
-                                            </SelectTrigger>
+                                            <Input placeholder="e.g. NYU" {...field} />
                                         </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="bachelors">Bachelor’s</SelectItem>
-                                            <SelectItem value="masters">Master’s</SelectItem>
-                                            <SelectItem value="phd">PhD</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/* Education Level */}
+                            <FormField
+                                control={form.control}
+                                name="education_level"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Highest Level of Education</FormLabel>
+                                        <Select onValueChange={field.onChange} value={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select Level" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="bachelors">Bachelor’s</SelectItem>
+                                                <SelectItem value="masters">Master’s</SelectItem>
+                                                <SelectItem value="phd">PhD</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* Vertical Divider */}
+                        <div className="hidden md:block w-px bg-gray-300" />
+
+                        {/* === RIGHT === */}
+                        <div className="md:w-[20vw] space-y-6">
+                            {/* Graduation Year */}
+                            <FormField
+                                control={form.control}
+                                name="graduation_year"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Graduation Year</FormLabel>
+                                        <Select onValueChange={field.onChange} value={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select Year" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {gradYears.map((year) => (
+                                                    <SelectItem key={year} value={year}>
+                                                        {year}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/* Visa Status */}
+                            <FormField
+                                control={form.control}
+                                name="visa_status_opt"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Current Visa Status</FormLabel>
+                                        <Select onValueChange={field.onChange} value={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select Status" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="opt_ead">OPT-EAD</SelectItem>
+                                                <SelectItem value="stem_opt">STEM OPT</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col items-stretch md:min-w-xs md:w-[20vw] space-y-6">
 
                         {/* Employment Status */}
                         <FormField
@@ -124,59 +172,6 @@ export default function RecentGraduateForm({
                                 </FormItem>
                             )}
                         />
-                    </div>
-
-                    {/* === RIGHT === */}
-                    <div className="space-y-4">
-                        {/* Graduation Year */}
-                        <FormField
-                            control={form.control}
-                            name="graduation_year"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Graduation Year</FormLabel>
-                                    <Select onValueChange={field.onChange} value={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Select Year" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            {gradYears.map((year) => (
-                                                <SelectItem key={year} value={year}>
-                                                    {year}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* Visa Status */}
-                        <FormField
-                            control={form.control}
-                            name="visa_status"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Current Visa Status</FormLabel>
-                                    <Select onValueChange={field.onChange} value={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Select Status" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="opt_ead">OPT-EAD</SelectItem>
-                                            <SelectItem value="stem_opt">STEM OPT</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
                         {/* Current Employer (if employed) */}
                         {employmentStatus === "employed" && (
                             <>
@@ -210,23 +205,23 @@ export default function RecentGraduateForm({
                             </>
                         )}
                     </div>
-                </div>
 
-                {/* Buttons */}
-                <div className="pt-6 flex justify-center gap-6">
-                    <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => router.push(`/profile?redirectTo=${redirectTo}`)}
-                        className="min-w-[8rem]"
-                    >
-                        Back
-                    </Button>
-                    <Button type="submit" className="min-w-[8rem]">
-                        Continue
-                    </Button>
-                </div>
-            </form>
-        </Form>
+                    {/* Buttons */}
+                    <div className="pt-6 flex justify-center gap-6">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => router.push(`/profile/status?redirectTo=${redirectTo}`)}
+                            className="min-w-[8rem]"
+                        >
+                            Back
+                        </Button>
+                        <Button type="submit" className="min-w-[8rem]">
+                            Continue
+                        </Button>
+                    </div>
+                </form>
+            </Form>
+        </div>
     );
 }
