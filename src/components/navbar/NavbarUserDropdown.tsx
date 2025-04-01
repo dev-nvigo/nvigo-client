@@ -1,8 +1,7 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/storeClient";
+import { useDispatch } from "react-redux";
 import { clearUser } from "@/redux/slices/userSlice";
 import {
     DropdownMenu,
@@ -19,7 +18,6 @@ import { supabase } from "@/lib/supabaseClient";
 const NavbarUserDropdown = () => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.user.user);
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
