@@ -8,10 +8,14 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { BLOGS, COMINGSOON, LOGIN, SERVICES, SIGNUP } from "../ConstantLinks";
 import TrackerLink from "../TrackerLink";
 import { DialogTitle } from "../ui/dialog";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/storeClient";
+import NavbarUserDropdown from "./NavbarUserDropdown";
 
 
 const Navbar = () => {
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
+    const user = useSelector((state: RootState) => state.user.user);
 
     return (
         <div id="navbar" className="top-0 left-0 w-full bg-white shadow z-50">
@@ -38,18 +42,23 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="flex gap-2">
-                    <Button
-                        variant="ghost"
-                        className="hidden md:block text-base text-[#232334] hover:bg-[#fe6b64] hover:text-white"
-                    >
-                        <TrackerLink action="click" category="Navbar" label="Login" href={SIGNUP} className="!font-circular-book">Sign Up</TrackerLink>
-                    </Button>
-                    <Button
-                        variant="default"
-                        className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
-                    >
-                        <TrackerLink action="click" category="Navbar" label="SignUp" href={LOGIN} className="!font-circular font-bold">Log In</TrackerLink>
-                    </Button>
+                    {user ?
+                        <NavbarUserDropdown /> :
+                        <div className="flex">
+                            <Button
+                                variant="ghost"
+                                className="hidden md:block text-base text-[#232334] hover:bg-[#fe6b64] hover:text-white"
+                            >
+                                <TrackerLink action="click" category="Navbar" label="Login" href={SIGNUP} className="!font-circular-book">Sign Up</TrackerLink>
+                            </Button>
+                            <Button
+                                variant="default"
+                                className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
+                            >
+                                <TrackerLink action="click" category="Navbar" label="SignUp" href={LOGIN} className="!font-circular font-bold">Log In</TrackerLink>
+                            </Button>
+                        </div>
+                    }
                     <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
                         <SheetTrigger asChild className="lg:hidden">
                             <Button variant="ghost" size="icon">
