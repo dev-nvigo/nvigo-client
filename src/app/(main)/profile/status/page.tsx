@@ -12,11 +12,9 @@ import {
     Form,
     FormField,
     FormItem,
-    FormLabel,
     FormControl,
-    FormMessage,
 } from "@/components/ui/form";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroup } from "@/components/ui/radio-group"
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBasicProfile, updateProfileStatus } from "@/lib/api/user";
 import { useDispatch } from "react-redux";
