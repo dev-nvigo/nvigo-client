@@ -6,7 +6,7 @@ type AuthHeaderProps = {
 const AuthHeader: React.FC<AuthHeaderProps> = ({ current, onChange }) => {
     return (
         <div className="w-full flex justify-center items-center">
-            <div className="flex gap-2 bg-white border border-c-blue-100 rounded-xl p-1 w-[60%]">
+            <div className="flex gap-2 bg-white border border-c-blue-100 rounded-xl p-1 w-[80%] md:w-[60%]">
                 <button
                     onClick={() => onChange("signup")}
                     className={`flex-1 text-base !font-satoshi-med py-2 px-6 rounded-xl 

@@ -32,7 +32,7 @@ const AuthPage = () => {
         <div className="flex items-center bg-c-white-150">
             <StaticCard />
 
-            <div className="w-1/2 flex flex-col items-center justify-center p-8">
+            <div className="md:w-1/2 flex flex-col items-center justify-center p-8">
                 <AuthHeader current={view} onChange={handleToggle} />
                 {view === "login" && <LoginForm redirectTo={redirectTo} />}
                 {view === "signup" && <SignUpForm redirectTo={redirectTo} />}
