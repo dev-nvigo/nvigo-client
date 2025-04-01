@@ -40,15 +40,15 @@ const Navbar = () => {
                 <div className="flex gap-2">
                     <Button
                         variant="ghost"
-                        className="text-base !font-circular-book text-[#232334] hover:bg-[#fe6b64] hover:text-white"
+                        className="hidden md:block text-base text-[#232334] hover:bg-[#fe6b64] hover:text-white"
                     >
-                        <TrackerLink action="click" category="Navbar" label="Login" href={LOGIN} className="!font-circular">Log In</TrackerLink>
+                        <TrackerLink action="click" category="Navbar" label="Login" href={SIGNUP} className="!font-circular-book">Sign Up</TrackerLink>
                     </Button>
                     <Button
                         variant="default"
                         className="bg-[#fe6b64] text-white px-4 py-2 text-xs md:text-sm rounded-md hover:bg-[#e85c56]"
                     >
-                        <TrackerLink action="click" category="Navbar" label="SignUp" href={SIGNUP} className="!font-circular font-bold">Sign Up</TrackerLink>
+                        <TrackerLink action="click" category="Navbar" label="SignUp" href={LOGIN} className="!font-circular font-bold">Log In</TrackerLink>
                     </Button>
                     <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
                         <SheetTrigger asChild className="lg:hidden">
@@ -61,7 +61,7 @@ const Navbar = () => {
                             <hr className="border-t border-gray-300 mb-10" />
                             <div className="flex flex-col gap-6 mt-8 items-center">
                                 <Button className="!font-circular-book text-2xl" variant="ghost" onClick={() => setOpenMobileMenu(false)}>
-                                    <TrackerLink action="click" category="Navbar" label="" href={COMINGSOON}>Services</TrackerLink>
+                                    <TrackerLink action="click" category="Navbar" label="" href={SERVICES}>Services</TrackerLink>
                                 </Button>
                                 <hr className="border-t w-[75%] border-gray-300" />
                                 <Button className="!font-circular-book text-2xl" variant="ghost" onClick={() => setOpenMobileMenu(false)}>
