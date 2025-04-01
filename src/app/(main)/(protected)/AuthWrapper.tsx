@@ -11,11 +11,6 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
   const router = useRouter();
   const pathname = usePathname();
   const redirectTo = searchParams.get("redirectTo") || pathname;
-  console.log("here");
-  console.log(pathname)
-  
-  
-
   const profile_completed = useSelector((state: RootState) => state.user.user?.profile_completed);
 
   useEffect(() => {

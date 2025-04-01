@@ -1,45 +1,45 @@
-// hooks/useSupabaseSession.ts
 import { useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useDispatch } from "react-redux";
 import { setUser, clearUser } from "@/redux/slices";
+import { fetchBasicProfile } from "@/lib/api/user";
 
 export const useSupabaseSession = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const getSession = async () => {
-            const {
-                data: { session },
-            } = await supabase.auth.getSession();
+        const restoreSession = async () => {
+            try {
+                const {
+                    data: { user },
+                    error,
+                } = await supabase.auth.getUser();
 
-            if (session?.user?.email) {
-                dispatch(setUser({
-                    id: session.user.id,
-                    email: session.user.email,
-                }));
-            } else {
+                if (error || !user) {
+                    console.warn("Supabase user restore failed:", error?.message);
+                    await supabase.auth.signOut(); // flush corrupted state
+                    dispatch(clearUser());
+                    return;
+                }
+
+                const profile = await fetchBasicProfile(user.id);
+
+                dispatch(
+                    setUser({
+                        id: user.id,
+                        email: user.email ?? "",
+                        full_name: profile?.full_name ?? "",
+                        profile_completed: profile?.profile_completed ?? false,
+                        current_status: profile?.current_status ?? "",
+                    })
+                );
+            } catch (err) {
+                console.error("Supabase session check failed:", err);
+                await supabase.auth.signOut();
                 dispatch(clearUser());
             }
         };
 
-        getSession();
-
-        const {
-            data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
-            if (session?.user?.email) {
-                dispatch(setUser({
-                    id: session.user.id,
-                    email: session.user.email,
-                }));
-            } else {
-                dispatch(clearUser());
-            }
-        });
-
-        return () => {
-            subscription.unsubscribe();
-        };
+        restoreSession();
     }, [dispatch]);
 };
