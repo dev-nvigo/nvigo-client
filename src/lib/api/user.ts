@@ -102,7 +102,8 @@ export async function fetchBasicProfile(userId: string) {
         address_line1,
         city,
         state,
-        postal_code
+        postal_code,
+        profile_completed
       `
         )
         .eq("id", userId)
@@ -112,7 +113,7 @@ export async function fetchBasicProfile(userId: string) {
         console.error("Error fetching profile:", error);
         return null;
     }
-
+    
     return data;
 }
 

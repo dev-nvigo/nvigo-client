@@ -38,19 +38,14 @@ const BasicInfoForm = ({ redirectTo = "/" }: BasicInfoFormProps) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const form = useForm<BasicInfoFormData>({
-        resolver: zodResolver(basicInfoSchema),
-        defaultValues: {
-            full_name: "",
-            email: user?.email || "",
-            country_of_origin: "",
-            current_country: "",
-        },
+        resolver: zodResolver(basicInfoSchema)
     });
 
     useEffect(() => {
         const prefill = async () => {
             if (user?.id) {
                 const profile = await fetchBasicProfile(user.id);
+                
                 if (profile) {
                     form.reset({
                         full_name: profile.full_name || "",
