@@ -4,7 +4,7 @@ export const featureData = [
         description: "Student benefits at your fingertips.",
         image: "/images/features/services.png",
         frame: "/svgs/features/services.svg",
-        slug: "coming-soon",
+        slug: "services",
     },
     {
         title: "Forums",

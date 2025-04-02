@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useSwipeable } from "react-swipeable";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import TrackerLink from "@/components/TrackerLink";
 import { gridData } from "@/data/heroItems";
 
 
@@ -55,10 +56,12 @@ const GridCarousel = () => {
                     transition={{ ease: "easeInOut", duration: 0.5 }}
                 >
                     {gridData.map((item, i) => (
-                        <div
+                        <TrackerLink
                             key={i}
                             className="w-full min-w-full flex flex-col p-6 rounded-xl justify-end"
                             style={{ backgroundColor: item.bgColor }}
+                            href={`/services?service=${item.slug}`}
+                            action="card-click" label={item.slug} category="Services"
                         >
                             {/* Image: Auto scales but doesn't exceed 40vh */}
                             <Image
@@ -75,7 +78,7 @@ const GridCarousel = () => {
                             <p className={`text-xs mt-1 ${item.textColor} !font-circular-book`}>
                                 {item.line_2}
                             </p>
-                        </div>
+                        </TrackerLink>
                     ))}
                 </motion.div>
 
