@@ -46,8 +46,9 @@ const Cards: React.FC<CardsProps> = ({ cards, basePath, category, className = ""
                             src={card.frame ? card.frame : `/images/blogs/${card.slug}.jpg`}
                             alt={`${card.title} frame`}
                             layout="fill"
-                            objectFit="cover"
+                            objectFit={category == "Vendors" ? "contain" : "cover"}
                             priority
+                            className={category == "Vendors" ? "px-2" : ""}
                         />
                         {card.service && (
                             <div

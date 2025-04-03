@@ -15,6 +15,7 @@ export type Vendor = {
     title: string;
     description: string;
     url: string;
+    frame: string;
     service: Service;
 };
 
@@ -41,6 +42,7 @@ export const fetchVendors = async (
             title,
             description,
             url,
+            frame,
             service:service_id (
                 id,
                 name,
@@ -94,6 +96,7 @@ export const fetchRecentVendors = async (
             title,
             description,
             url,
+            fetch,
             service:service_id (
                 id,
                 name,
@@ -138,6 +141,7 @@ export const fetchVendorBySlug = async (
             title,
             description,
             url,
+            fetch,
             service:service_id (
                 id,
                 name,
