@@ -10,6 +10,7 @@ interface CardProps {
     excerpt?: string;
     slug?: string;
     image?: string;
+    url?: string;
     service?: {
         name: string;
         color: string;
@@ -38,7 +39,7 @@ const Cards: React.FC<CardsProps> = ({ cards, basePath, category, className = ""
                     category={category}
                     label={card.title}
                     key={index}
-                    href={`${basePath}/${card.slug}`}
+                    href={card.url ? card.url : `${basePath}/${card.slug}`}
                     className={`cursor-pointer rounded-xl overflow-hidden shadow-md relative flex flex-col flex-grow border-black border-[0.5px] transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:bg-opacity-90 ${cardClassName}`}
                 >
                     <div className="relative w-full aspect-[16/9]">
